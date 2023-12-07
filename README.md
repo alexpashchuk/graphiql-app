@@ -2,10 +2,6 @@
 
 GraphiQL is a playground/IDE for graphQL requests
 
-## Deploy
-
-https://rs-graphiql-app.netlify.app/
-
 ## Developers:
 
 - [Alexey Pashchuk](https://github.com/alexpashchuk)
