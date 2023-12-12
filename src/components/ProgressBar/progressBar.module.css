@@ -1,0 +1,40 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.progress {
+  display: flex;
+  height: 8px;
+}
+
+progress::-webkit-progress-bar {
+  background-color: var(--color-gray);
+  border-radius: 1rem;
+}
+
+progress[value]::-webkit-progress-value {
+  border-radius: 1rem;
+}
+
+progress[value='1']::-webkit-progress-value {
+  background-color: red;
+}
+
+progress[value='2']::-webkit-progress-value {
+  background-color: yellow;
+}
+
+progress[value='3']::-webkit-progress-value {
+  background-color: orange;
+}
+
+progress[value='4']::-webkit-progress-value {
+  background-color: limegreen;
+}
+
+progress[value='5']::-webkit-progress-value {
+  background-color: green;
+}
