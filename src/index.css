@@ -47,6 +47,9 @@
   --color-accent: #2c73d2;
   --color-hover: #008e9b;
   --color-error: #e31445;
+
+  --error-border: 2px solid var(--color-error);
+  --input-border: 2px solid var(--color-accent);
 }
 
 * {
@@ -156,4 +159,11 @@ html {
 
 #root > main {
   flex: 1 1 auto;
+}
+
+.container {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0.5rem;
 }

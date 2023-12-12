@@ -1,0 +1,38 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.heading {
+  font-size: 8rem;
+  margin: 2rem;
+  color: var(--color-accent);
+}
+
+.text {
+  font-size: 2rem;
+  margin: 1rem;
+  color: var(--color-accent);
+}
+
+.backHome {
+  font-size: 2rem;
+  margin: 1rem;
+  color: var(--color-dark);
+  background-color: var(--color-accent);
+  border-radius: 5px;
+  padding: 5px 15px;
+  transition: all 0.3s;
+}
+
+.backHome:hover {
+  background: var(--color-hover);
+  color: var(--color-light);
+  text-underline: none;
+}
+
+.backHome:active {
+  scale: 0.98;
+}

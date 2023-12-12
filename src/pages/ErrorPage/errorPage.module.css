@@ -1,0 +1,25 @@
+.root {
+  composes: root from '../NotFoundPage/notFoundPage.module.css';
+}
+
+.heading {
+  composes: heading from '../NotFoundPage/notFoundPage.module.css';
+}
+
+.text {
+  composes: text from '../NotFoundPage/notFoundPage.module.css';
+}
+
+.errorBtn {
+  composes: backHome from '../NotFoundPage/notFoundPage.module.css';
+}
+
+.errorBtn:hover {
+  background: var(--color-hover);
+  color: var(--color-light);
+  text-underline: none;
+}
+
+.errorBtn:active {
+  scale: 0.98;
+}
