@@ -30,7 +30,7 @@ export const usePasswordStrength = (password = ''): number => {
         score++;
       }
 
-      if (password?.length >= 8) {
+      if (password.length >= 8) {
         score++;
       }
 
