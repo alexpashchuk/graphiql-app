@@ -22,13 +22,13 @@ const InputText = <T extends FieldValues>(props: InputTextProps<T>) => {
         </label>
         <div className={classes.inputWrapper}>
           <input
+            {...register(field)}
             className={clsx(classes.input, error ? classes.errorInput : null)}
             id={field}
             type={type === 'password' && showPassword ? 'text' : type}
             autoComplete={autocomplete}
-            {...register(field)}
           />
-          {type === 'password' ? (
+          {type === 'password' && (
             <div
               role="button"
               aria-label={showPassword ? 'Show password' : 'Hide password'}
@@ -37,11 +37,11 @@ const InputText = <T extends FieldValues>(props: InputTextProps<T>) => {
             >
               {showPassword ? <LogoEye /> : <LogoEyeSlash />}
             </div>
-          ) : null}
+          )}
         </div>
-        {isProgress ? <ProgressBar password={password} /> : null}
+        {isProgress && <ProgressBar password={password} />}
       </div>
-      <p className={classes.errorMessage}>{error ? <span>{error}</span> : null}</p>
+      <p className={classes.errorMessage}>{error && <span>{error}</span>}</p>
     </div>
   );
 };

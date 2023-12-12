@@ -19,7 +19,7 @@ const SignUp = () => {
   const onSubmit = handleSubmit(async (data) => {
     const { name, email, password } = data;
     try {
-      // TODO: firebase auth
+      // https://app.asana.com/0/1206001149209373/1206122469224992
     } catch (e) {
       errorHandling(e);
     }

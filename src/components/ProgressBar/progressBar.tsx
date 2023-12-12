@@ -3,7 +3,7 @@ import usePasswordStrength from '@/hooks/usePasswordStrength.ts';
 import classes from './progressBar.module.css';
 
 type ProgressBarProps = {
-  password: string | undefined;
+  password?: string;
 };
 
 const ProgressBar = (props: ProgressBarProps) => {

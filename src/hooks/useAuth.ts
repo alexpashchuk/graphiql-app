@@ -5,7 +5,7 @@ export const useAuth = () => {
   const { email, name, view } = useAppSelector(selectUser);
 
   return {
-    isAuth: !!email,
+    isAuth: Boolean(email),
     name,
     view,
   };

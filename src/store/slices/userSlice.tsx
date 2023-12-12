@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '@/store/store.tsx';
 
-type UserView = '' | 'sign-in' | 'sign-up';
+type UserView = 'sign-in' | 'sign-up';
 
 type UserData = {
   name: string;
@@ -12,7 +12,7 @@ type UserData = {
 const initialState: UserData = {
   name: '',
   email: '',
-  view: '',
+  view: 'sign-in',
 };
 
 const userSlice = createSlice({

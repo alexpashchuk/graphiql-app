@@ -7,35 +7,31 @@ import {
   REGEX_PASSWORD_UPPER,
 } from '@/constants/constants.ts';
 
-export const usePasswordStrength = (password: string | undefined): number => {
+export const usePasswordStrength = (password = ''): number => {
   const [strength, setStrength] = useState(0);
 
   useEffect(() => {
-    const calculateStrength = (password: string | undefined) => {
+    const calculateStrength = (password: string) => {
       let score = 0;
 
-      if (REGEX_PASSWORD_NUMERIC.test(password!)) {
+      if (REGEX_PASSWORD_NUMERIC.test(password)) {
         score++;
       }
 
-      if (REGEX_PASSWORD_LOWER.test(password!)) {
+      if (REGEX_PASSWORD_LOWER.test(password)) {
         score++;
       }
 
-      if (REGEX_PASSWORD_UPPER.test(password!)) {
+      if (REGEX_PASSWORD_UPPER.test(password)) {
         score++;
       }
 
-      if (REGEX_PASSWORD_CHARACTER.test(password!)) {
+      if (REGEX_PASSWORD_CHARACTER.test(password)) {
         score++;
       }
 
-      if (password && password?.length >= 8) {
+      if (password?.length >= 8) {
         score++;
-      }
-
-      if (typeof password === 'undefined') {
-        score = 0;
       }
 
       return score;

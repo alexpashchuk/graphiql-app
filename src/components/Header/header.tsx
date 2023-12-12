@@ -11,7 +11,7 @@ const Header = () => {
   const { isAuth } = useAuth();
 
   const handleLogOut = async () => {
-    // TODO: firebase auth
+    // https://app.asana.com/0/1206001149209373/1206122469224992
   };
 
   return (
