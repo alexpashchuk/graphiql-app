@@ -19,9 +19,19 @@ type LocalizationProviderProps = {
 
 export const LocalizationProvider = ({ children }: LocalizationProviderProps) => {
   const localeList = Object.values(Locale);
-  const [currentLocaleIndex, setCurrentLocaleIndex] = useState(0);
+  const [currentLocaleIndex, setCurrentLocaleIndex] = useState(() => {
+    const savedLocaleIndex = localStorage.getItem('LocaleIndex');
+    const parsedIndex = savedLocaleIndex ? parseInt(savedLocaleIndex, 10) : 0;
+    return isNaN(parsedIndex) ? 0 : parsedIndex;
+  });
 
-  const handleSwitchLocale = () => setCurrentLocaleIndex((prev) => (prev + 1) % localeList.length);
+  const handleSwitchLocale = () => {
+    setCurrentLocaleIndex((prev) => {
+      const newIndex = (prev + 1) % localeList.length;
+      localStorage.setItem('LocaleIndex', newIndex.toString());
+      return newIndex;
+    });
+  };
 
   const contextValue: LocalizationContextType = {
     locale: localeList[currentLocaleIndex] ?? Locale.EN,

@@ -1,23 +1,39 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-
 import { SignUpForm, signUpSchema } from '@/utils/authValidationSchema.ts';
 import { errorHandling } from '@/utils/errorHandling.ts';
 import InputText from '@/components/InputText/inputText.tsx';
 import { useLocalization } from '@/hooks/useLocalization';
+import { useEffect } from 'react';
 
 const SignUp = () => {
-  const { LocalizationData } = useLocalization();
+  const { LocalizationData, locale } = useLocalization();
   const { authForm } = LocalizationData;
+
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
+    setError,
   } = useForm<SignUpForm>({
     mode: 'onChange',
-    resolver: yupResolver(signUpSchema),
+    resolver: yupResolver(signUpSchema(locale)),
   });
+
+  useEffect(() => {
+    Object.keys(errors).forEach(async (fieldName) => {
+      const path = fieldName as keyof SignUpForm;
+      try {
+        await signUpSchema(locale).validate({ path });
+      } catch (err) {
+        setError(path, {
+          type: 'manual',
+          message: (err as Error).message,
+        });
+      }
+    });
+  }, [errors, locale, setError]);
 
   const onSubmit = handleSubmit(async (data) => {
     const { name, email, password } = data;
