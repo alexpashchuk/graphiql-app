@@ -8,11 +8,14 @@ import LogoEyeSlash from '@/assets/icons/eye-slash.svg';
 import ProgressBar from '@/components/ProgressBar/progressBar.tsx';
 
 import classes from './inputText.module.css';
+import { useLocalization } from '@/hooks/useLocalization';
 
 const InputText = <T extends FieldValues>(props: InputTextProps<T>) => {
   const { field, labelText, type = 'text', autocomplete = 'on', error, register, password, isProgress } = props;
 
   const [showPassword, setShowPassword] = useState(false);
+  const { LocalizationData } = useLocalization();
+  const { authForm } = LocalizationData;
 
   return (
     <div className={classes.wrapper}>
@@ -31,7 +34,7 @@ const InputText = <T extends FieldValues>(props: InputTextProps<T>) => {
           {type === 'password' && (
             <div
               role="button"
-              aria-label={showPassword ? 'Show password' : 'Hide password'}
+              aria-label={showPassword ? authForm.showPassword : authForm.hidePassword}
               className={classes.showHide}
               onClick={() => setShowPassword((prev) => !prev)}
             >

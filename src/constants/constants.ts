@@ -5,3 +5,7 @@ export const REGEX_PASSWORD_LOWER = /[a-z]/;
 export const REGEX_PASSWORD_UPPER = /[A-Z]/;
 export const REGEX_PASSWORD_NUMERIC = /[0-9]/;
 export const REGEX_PASSWORD_CHARACTER = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/;
+export enum Locale {
+  EN = 'en',
+  RU = 'ru',
+}

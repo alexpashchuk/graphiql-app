@@ -1,13 +1,14 @@
+import { Locale } from '@/constants/constants';
 import { createContext, ReactNode, useState } from 'react';
-type Language = 'en' | 'ru';
+
 type LocalizationContextType = {
-  lang: Language;
-  switchLang: () => void;
+  locale: Locale;
+  handleSwitchLocale: () => void;
 };
 
 const initialContext: LocalizationContextType = {
-  lang: 'en',
-  switchLang: () => {},
+  locale: Locale.EN,
+  handleSwitchLocale: () => {},
 };
 
 export const LocalizationContext = createContext<LocalizationContextType>(initialContext);
@@ -17,16 +18,14 @@ type LocalizationProviderProps = {
 };
 
 export const LocalizationProvider = ({ children }: LocalizationProviderProps) => {
-  const [lang, setLang] = useState<Language>('en');
-  const isEnLang = lang === 'en';
+  const localeList = Object.values(Locale);
+  const [currentLocaleIndex, setCurrentLocaleIndex] = useState(0);
 
-  const switchLang = () => {
-    setLang(isEnLang ? 'ru' : 'en');
-  };
+  const handleSwitchLocale = () => setCurrentLocaleIndex((prev) => (prev + 1) % localeList.length);
 
   const contextValue: LocalizationContextType = {
-    lang,
-    switchLang,
+    locale: localeList[currentLocaleIndex] ?? Locale.EN,
+    handleSwitchLocale,
   };
 
   return <LocalizationContext.Provider value={contextValue}>{children}</LocalizationContext.Provider>;

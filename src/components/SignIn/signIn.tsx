@@ -4,8 +4,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { SignInForm, signInSchema } from '@/utils/authValidationSchema.ts';
 import { errorHandling } from '@/utils/errorHandling.ts';
 import InputText from '@/components/InputText/inputText.tsx';
+import { useLocalization } from '@/hooks/useLocalization';
 
 const SignIn = () => {
+  const { LocalizationData } = useLocalization();
+  const { authForm } = LocalizationData;
   const {
     register,
     handleSubmit,
@@ -26,17 +29,23 @@ const SignIn = () => {
 
   return (
     <div>
-      <h1>Sign In</h1>
+      <h1>{authForm.signInTitle}</h1>
       <form noValidate onSubmit={onSubmit}>
-        <InputText field="email" labelText="Email" type="email" register={register} error={errors.email?.message} />
+        <InputText
+          field="email"
+          labelText={authForm.emailLabel}
+          type="email"
+          register={register}
+          error={errors.email?.message}
+        />
         <InputText
           field="password"
-          labelText="Password"
+          labelText={authForm.passwordLabel}
           type="password"
           register={register}
           error={errors.password?.message}
         />
-        <button type="submit">Submit</button>
+        <button type="submit">{authForm.btnText}</button>
       </form>
     </div>
   );

@@ -4,8 +4,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { SignUpForm, signUpSchema } from '@/utils/authValidationSchema.ts';
 import { errorHandling } from '@/utils/errorHandling.ts';
 import InputText from '@/components/InputText/inputText.tsx';
+import { useLocalization } from '@/hooks/useLocalization';
 
 const SignUp = () => {
+  const { LocalizationData } = useLocalization();
+  const { authForm } = LocalizationData;
   const {
     register,
     handleSubmit,
@@ -27,13 +30,19 @@ const SignUp = () => {
 
   return (
     <div>
-      <h1>Sign Up</h1>
+      <h1>{authForm.signUpTitle}</h1>
       <form noValidate onSubmit={onSubmit}>
-        <InputText field="name" labelText="Name" register={register} error={errors.name?.message} />
-        <InputText field="email" labelText="Email" type="email" register={register} error={errors.email?.message} />
+        <InputText field="name" labelText={authForm.nameLabel} register={register} error={errors.name?.message} />
+        <InputText
+          field="email"
+          labelText={authForm.emailLabel}
+          type="email"
+          register={register}
+          error={errors.email?.message}
+        />
         <InputText
           field="password"
-          labelText="Password"
+          labelText={authForm.passwordLabel}
           type="password"
           register={register}
           password={watch('password')}
@@ -42,12 +51,12 @@ const SignUp = () => {
         />
         <InputText
           field="confirmPassword"
-          labelText="Confirm Password"
+          labelText={authForm.confirmPasswordLabel}
           type="password"
           register={register}
           error={errors.confirmPassword?.message}
         />
-        <button type="submit">Submit</button>
+        <button type="submit">{authForm.btnText}</button>
       </form>
     </div>
   );
