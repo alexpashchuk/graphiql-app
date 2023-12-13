@@ -9,3 +9,12 @@ export enum Locale {
   EN = 'en',
   RU = 'ru',
 }
+
+export enum paths {
+  welcome = '/',
+  main = '/editor',
+  auth = '/auth',
+}
+
+export const SIGN_IN = 'sign-in';
+export const SIGN_UP = 'sign-up';

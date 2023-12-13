@@ -16,6 +16,8 @@ export default {
     btnText: 'Отправить',
     showPassword: 'Показать пароль',
     hidePassword: 'Спрятать пароль',
+    noNaveAccount: 'Еще нет аккаунта?',
+    haveAccount: 'Уже есть аккаунт?',
     errors: {
       name: 'Первая буква должна быть заглавной',
       email: 'Неверный формат. Пожалуйста, введите корректный адрес электронной почты, например, john@smith.com.',
@@ -40,6 +42,8 @@ export default {
     text: 'Страница не найдена',
     btnText: 'На главную',
   },
-  welcomePage: {},
+  welcomePage: {
+    toEditor: 'Перейти в редактор',
+  },
   graphiQLPage: {},
 };

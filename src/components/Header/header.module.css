@@ -12,12 +12,29 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 1rem;
+  width: 100%;
 }
 
 .authNav {
   display: flex;
+  align-items: center;
   gap: 1rem;
 }
+
+.authUser {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.name {
+  max-width: 13rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
 .langBtn {
   text-transform: uppercase;
   transition: 0.6s ease-in-out;

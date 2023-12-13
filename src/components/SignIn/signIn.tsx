@@ -1,14 +1,23 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useEffect, useState } from 'react';
+
 import { SignInForm, signInSchema } from '@/utils/authValidationSchema.ts';
 import { errorHandling } from '@/utils/errorHandling.ts';
 import InputText from '@/components/InputText/inputText.tsx';
 import { useLocalization } from '@/hooks/useLocalization';
-import { useEffect } from 'react';
+import Spinner from '@/components/Spinner/spinner.tsx';
+import { logInWithEmailAndPassword } from '@/firebase/firebase.ts';
+import { setAuthView } from '@/store/slices/userSlice.tsx';
+import { SIGN_UP } from '@/constants/constants.ts';
+import { useAppDispatch } from '@/hooks/useRedux.ts';
+import classes from '@/components/SignUp/signUp.module.css';
 
 const SignIn = () => {
   const { LocalizationData, locale } = useLocalization();
-  const { authForm } = LocalizationData;
+  const { authForm, navMenu } = LocalizationData;
+  const dispatch = useAppDispatch();
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     register,
@@ -19,6 +28,7 @@ const SignIn = () => {
     mode: 'onChange',
     resolver: yupResolver(signInSchema(locale)),
   });
+
   useEffect(() => {
     Object.keys(errors).forEach(async (fieldName) => {
       const path = fieldName as keyof SignInForm;
@@ -36,15 +46,18 @@ const SignIn = () => {
   const onSubmit = handleSubmit(async (data) => {
     const { email, password } = data;
     try {
-      // https://app.asana.com/0/1206001149209373/1206122469224992
-    } catch (e) {
-      errorHandling(e);
+      setIsLoading(true);
+      await logInWithEmailAndPassword(email, password);
+      setIsLoading(false);
+    } catch (err) {
+      errorHandling(err);
     }
   });
 
   return (
-    <div>
-      <h1>{authForm.signInTitle}</h1>
+    <div className={classes.root}>
+      {isLoading && <Spinner />}
+      <h1 className={classes.title}>{authForm.signInTitle}</h1>
       <form noValidate onSubmit={onSubmit}>
         <InputText
           field="email"
@@ -62,6 +75,10 @@ const SignIn = () => {
         />
         <button type="submit">{authForm.btnText}</button>
       </form>
+      <div className={classes.view}>
+        <p>{authForm.noNaveAccount}</p>
+        <button onClick={() => dispatch(setAuthView(SIGN_UP))}>{navMenu.signUp}</button>
+      </div>
     </div>
   );
 };

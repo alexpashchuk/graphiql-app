@@ -1,14 +1,23 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useEffect, useState } from 'react';
+
 import { SignUpForm, signUpSchema } from '@/utils/authValidationSchema.ts';
 import { errorHandling } from '@/utils/errorHandling.ts';
 import InputText from '@/components/InputText/inputText.tsx';
 import { useLocalization } from '@/hooks/useLocalization';
-import { useEffect } from 'react';
+import { useAppDispatch } from '@/hooks/useRedux.ts';
+import { registerWithEmailAndPassword } from '@/firebase/firebase.ts';
+import Spinner from '@/components/Spinner/spinner.tsx';
+import { setAuthView } from '@/store/slices/userSlice.tsx';
+import { SIGN_IN } from '@/constants/constants.ts';
 
+import classes from './signUp.module.css';
 const SignUp = () => {
   const { LocalizationData, locale } = useLocalization();
-  const { authForm } = LocalizationData;
+  const { authForm, navMenu } = LocalizationData;
+  const dispatch = useAppDispatch();
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     register,
@@ -38,15 +47,18 @@ const SignUp = () => {
   const onSubmit = handleSubmit(async (data) => {
     const { name, email, password } = data;
     try {
-      // https://app.asana.com/0/1206001149209373/1206122469224992
-    } catch (e) {
-      errorHandling(e);
+      setIsLoading(true);
+      await registerWithEmailAndPassword(name, email, password);
+      setIsLoading(false);
+    } catch (err) {
+      errorHandling(err);
     }
   });
 
   return (
-    <div>
-      <h1>{authForm.signUpTitle}</h1>
+    <div className={classes.root}>
+      {isLoading && <Spinner />}
+      <h1 className={classes.title}>{authForm.signUpTitle}</h1>
       <form noValidate onSubmit={onSubmit}>
         <InputText field="name" labelText={authForm.nameLabel} register={register} error={errors.name?.message} />
         <InputText
@@ -74,6 +86,10 @@ const SignUp = () => {
         />
         <button type="submit">{authForm.btnText}</button>
       </form>
+      <div className={classes.view}>
+        <p>{authForm.haveAccount}</p>
+        <button onClick={() => dispatch(setAuthView(SIGN_IN))}>{navMenu.signIn}</button>
+      </div>
     </div>
   );
 };

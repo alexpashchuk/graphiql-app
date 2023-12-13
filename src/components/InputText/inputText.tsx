@@ -6,9 +6,9 @@ import { InputTextProps } from '@/types/types.ts';
 import LogoEye from '@/assets/icons/eye.svg';
 import LogoEyeSlash from '@/assets/icons/eye-slash.svg';
 import ProgressBar from '@/components/ProgressBar/progressBar.tsx';
+import { useLocalization } from '@/hooks/useLocalization';
 
 import classes from './inputText.module.css';
-import { useLocalization } from '@/hooks/useLocalization';
 
 const InputText = <T extends FieldValues>(props: InputTextProps<T>) => {
   const { field, labelText, type = 'text', autocomplete = 'on', error, register, password, isProgress } = props;
