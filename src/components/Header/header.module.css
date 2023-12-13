@@ -18,7 +18,14 @@
   display: flex;
   gap: 1rem;
 }
-
+.langBtn {
+  text-transform: uppercase;
+  transition: 0.6s ease-in-out;
+}
+.langBtn:hover {
+  cursor: pointer;
+  color: #fff;
+}
 @media (max-width: 768px) {
   .link {
     font-size: 1rem;
