@@ -10,8 +10,8 @@ import classes from './button.module.css';
 type ButtonProps = {
   text: string;
   className?: string;
-  type?: ButtonType;
-  priority?: ButtonPriority;
+  type?: `${ButtonType}`;
+  priority?: `${ButtonPriority}`;
   disabled?: boolean;
   onClick?: () => void;
   loading?: boolean;
