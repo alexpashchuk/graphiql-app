@@ -32,7 +32,7 @@
 
 .input {
   display: flex;
-  border-radius: 10px;
+  border-radius: 0.375rem;
   border: var(--input-border);
   padding: 0.5rem;
   font-size: 16px;
@@ -42,7 +42,7 @@
   text-align: left;
 }
 
-.input:focus {
+.input:not(.errorInput):focus {
   border-color: var(--color-hover);
 }
 
@@ -52,15 +52,6 @@
 
 .errorInput {
   border: var(--error-border);
-}
-
-.checkbox input,
-.file input {
-  border: none;
-  padding: 0;
-  min-height: fit-content;
-  border-radius: 0;
-  width: auto;
 }
 
 .showHide {

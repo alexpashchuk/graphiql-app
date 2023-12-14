@@ -9,10 +9,11 @@ import AuthPage from '@/pages/AuthPage/authPage.tsx';
 import EditorPage from '@/pages/EditorPage/editorPage.tsx';
 import NotFoundPage from '@/pages/NotFoundPage/notFoundPage.tsx';
 import ErrorPage from '@/pages/ErrorPage/errorPage.tsx';
+import { paths } from '@/constants/constants.ts';
 
 const routes = [
   {
-    path: '/',
+    path: paths.welcome,
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
@@ -21,7 +22,7 @@ const routes = [
         element: <WelcomePage />,
       },
       {
-        path: '/auth',
+        path: paths.auth,
         element: (
           <AuthLayout>
             <AuthPage />
@@ -29,7 +30,7 @@ const routes = [
         ),
       },
       {
-        path: '/editor',
+        path: paths.main,
         element: (
           <GuestLayout>
             <EditorPage />

@@ -16,6 +16,8 @@ export default {
     btnText: 'Submit',
     showPassword: 'Show password',
     hidePassword: 'Hide password',
+    noNaveAccount: "Don't have an account?",
+    haveAccount: 'Already have an account?',
     errors: {
       name: 'The first letter must be uppercase',
       email: 'Invalid entry. Please enter valid email address, for example, john@smith.com.',
@@ -31,7 +33,9 @@ export default {
     },
   },
 
-  welcomePage: {},
+  welcomePage: {
+    toEditor: 'Go to editor page',
+  },
   graphiQLPage: {},
   errorPage: {
     title: 'Error',

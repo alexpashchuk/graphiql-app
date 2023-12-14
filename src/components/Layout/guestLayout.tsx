@@ -1,11 +1,13 @@
 import { ReactNode } from 'react';
 import { Navigate } from 'react-router-dom';
-import { useAuth } from '@/hooks/useAuth.ts';
+import { useAuthState } from 'react-firebase-hooks/auth';
+
+import { auth } from '@/firebase/firebase.ts';
 
 const GuestLayout = ({ children }: { children: ReactNode }) => {
-  const { isAuth } = useAuth();
+  const [user] = useAuthState(auth);
 
-  return isAuth ? <>{children}</> : <Navigate to="/" />;
+  return user ? <>{children}</> : <Navigate to="/" />;
 };
 
 export default GuestLayout;

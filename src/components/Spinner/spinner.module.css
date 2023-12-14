@@ -1,23 +1,24 @@
 .loader {
+  --size: 80px;
+
   position: absolute;
-  right: 0;
-  left: 0;
-  top: calc(50% - 40px);
+  left: 50%;
+  top: 50%;
   margin: 0 auto;
-  border: 10px solid var(--color-gray);
-  border-top: 10px solid var(--color-accent);
+  border: calc(var(--size) / 8) solid var(--color-gray);
+  border-top: calc(var(--size) / 8) solid var(--color-accent);
   border-radius: 50%;
-  width: 80px;
-  height: 80px;
+  width: var(--size);
+  height: var(--size);
   animation: spin 1s linear infinite;
   z-index: 100;
 }
 
 @keyframes spin {
   0% {
-    transform: rotate(0deg);
+    transform: translate(-50%, -50%) rotate(0deg);
   }
   100% {
-    transform: rotate(360deg);
+    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
