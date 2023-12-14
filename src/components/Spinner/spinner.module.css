@@ -5,7 +5,7 @@
   left: 50%;
   top: 50%;
   margin: 0 auto;
-  border: calc(var(--size) / 8) solid var(--color-gray);
+  border: calc(var(--size) / 8) solid var(--color-light);
   border-top: calc(var(--size) / 8) solid var(--color-accent);
   border-radius: 50%;
   width: var(--size);

@@ -7,10 +7,12 @@ import { errorHandling } from '@/utils/errorHandling.ts';
 import InputText from '@/components/InputText/inputText.tsx';
 import { useLocalization } from '@/hooks/useLocalization';
 import Spinner from '@/components/Spinner/spinner.tsx';
+import Button from '@/components/Button/button.tsx';
 import { logInWithEmailAndPassword } from '@/firebase/firebase.ts';
 import { setAuthView } from '@/store/slices/userSlice.tsx';
 import { SIGN_UP } from '@/constants/constants.ts';
 import { useAppDispatch } from '@/hooks/useRedux.ts';
+
 import classes from '@/components/SignUp/signUp.module.css';
 
 const SignIn = () => {
@@ -73,11 +75,11 @@ const SignIn = () => {
           register={register}
           error={errors.password?.message}
         />
-        <button type="submit">{authForm.btnText}</button>
+        <Button text={authForm.btnText} type="submit" className={classes.buttonSubmit} />
       </form>
       <div className={classes.view}>
         <p>{authForm.noNaveAccount}</p>
-        <button onClick={() => dispatch(setAuthView(SIGN_UP))}>{navMenu.signUp}</button>
+        <Button text={navMenu.signUp} priority="secondary" onClick={() => dispatch(setAuthView(SIGN_UP))} />
       </div>
     </div>
   );
