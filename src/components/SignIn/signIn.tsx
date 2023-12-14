@@ -10,7 +10,7 @@ import Spinner from '@/components/Spinner/spinner.tsx';
 import Button from '@/components/Button/button.tsx';
 import { logInWithEmailAndPassword } from '@/firebase/firebase.ts';
 import { setAuthView } from '@/store/slices/userSlice.tsx';
-import { SIGN_UP } from '@/constants/constants.ts';
+import { ButtonPriority, ButtonType, SIGN_UP } from '@/constants/constants.ts';
 import { useAppDispatch } from '@/hooks/useRedux.ts';
 
 import classes from '@/components/SignUp/signUp.module.css';
@@ -75,11 +75,15 @@ const SignIn = () => {
           register={register}
           error={errors.password?.message}
         />
-        <Button text={authForm.btnText} type="submit" className={classes.buttonSubmit} />
+        <Button text={authForm.btnText} type={ButtonType.SUBMIT} className={classes.buttonSubmit} />
       </form>
       <div className={classes.view}>
         <p>{authForm.noNaveAccount}</p>
-        <Button text={navMenu.signUp} priority="secondary" onClick={() => dispatch(setAuthView(SIGN_UP))} />
+        <Button
+          text={navMenu.signUp}
+          priority={ButtonPriority.SECONDARY}
+          onClick={() => dispatch(setAuthView(SIGN_UP))}
+        />
       </div>
     </div>
   );

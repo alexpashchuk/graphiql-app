@@ -7,12 +7,11 @@ import clsx from 'clsx';
 import LogoUser from '@/assets/icons/user.svg';
 import { useAppDispatch } from '@/hooks/useRedux.ts';
 import { useLocalization } from '@/hooks/useLocalization';
-import { SIGN_IN, SIGN_UP } from '@/constants/constants.ts';
+import { paths, SIGN_IN, SIGN_UP } from '@/constants/constants.ts';
 import { setAuthView } from '@/store/slices/userSlice.tsx';
 import { auth, db, logout } from '@/firebase/firebase.ts';
 import { errorHandling } from '@/utils/errorHandling.ts';
 import { useWindowScrolled } from '@/utils/useWindowScrolled.ts';
-import { paths } from '@/constants/constants.ts';
 import Button from '@/components/Button/button.tsx';
 import Spinner from '@/components/Spinner/spinner.tsx';
 
@@ -72,7 +71,7 @@ const Header = () => {
               <div className={classes.authNav}>
                 <div className={classes.authUser}>
                   <LogoUser className={classes.logoUser} />
-                  <p className={classes.name}>{!name ? <Spinner size={15} /> : name}</p>
+                  <p className={classes.name}>{name || <Spinner size={15} />}</p>
                 </div>
                 <Button text={navMenu.logout} onClick={handleLogOut} />
               </div>

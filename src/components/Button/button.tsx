@@ -3,14 +3,15 @@ import { Link } from 'react-router-dom';
 import { ReactNode } from 'react';
 
 import Spinner from '@/components/Spinner/spinner.tsx';
+import { ButtonPriority, ButtonType } from '@/constants/constants.ts';
 
 import classes from './button.module.css';
 
 type ButtonProps = {
   text: string;
   className?: string;
-  type?: 'button' | 'submit' | 'reset';
-  priority?: 'primary' | 'secondary';
+  type?: ButtonType;
+  priority?: ButtonPriority;
   disabled?: boolean;
   onClick?: () => void;
   loading?: boolean;
@@ -22,10 +23,10 @@ const Button = (props: ButtonProps) => {
   const {
     text,
     className,
-    priority = 'primary',
+    priority = ButtonPriority.PRIMARY,
     disabled,
     loading,
-    type = 'button',
+    type = ButtonType.BUTTON,
     linkHref,
     onClick,
     children,
@@ -37,7 +38,7 @@ const Button = (props: ButtonProps) => {
       disabled={disabled}
       className={clsx(
         classes.button,
-        priority === 'primary' ? classes.buttonPrimary : classes.buttonSecondary,
+        priority === ButtonPriority.PRIMARY ? classes.buttonPrimary : classes.buttonSecondary,
         className
       )}
       onClick={onClick}

@@ -11,7 +11,7 @@ import { registerWithEmailAndPassword } from '@/firebase/firebase.ts';
 import Spinner from '@/components/Spinner/spinner.tsx';
 import Button from '@/components/Button/button.tsx';
 import { setAuthView } from '@/store/slices/userSlice.tsx';
-import { SIGN_IN } from '@/constants/constants.ts';
+import { ButtonPriority, ButtonType, SIGN_IN } from '@/constants/constants.ts';
 
 import classes from './signUp.module.css';
 
@@ -86,11 +86,15 @@ const SignUp = () => {
           register={register}
           error={errors.confirmPassword?.message}
         />
-        <Button text={authForm.btnText} type="submit" className={classes.buttonSubmit} />
+        <Button text={authForm.btnText} type={ButtonType.SUBMIT} className={classes.buttonSubmit} />
       </form>
       <div className={classes.view}>
         <p>{authForm.haveAccount}</p>
-        <Button text={navMenu.signIn} priority="secondary" onClick={() => dispatch(setAuthView(SIGN_IN))} />
+        <Button
+          text={navMenu.signIn}
+          priority={ButtonPriority.SECONDARY}
+          onClick={() => dispatch(setAuthView(SIGN_IN))}
+        />
       </div>
     </div>
   );
