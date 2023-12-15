@@ -9,10 +9,12 @@ import { useLocalization } from '@/hooks/useLocalization';
 import { useAppDispatch } from '@/hooks/useRedux.ts';
 import { registerWithEmailAndPassword } from '@/firebase/firebase.ts';
 import Spinner from '@/components/Spinner/spinner.tsx';
+import Button from '@/components/Button/button.tsx';
 import { setAuthView } from '@/store/slices/userSlice.tsx';
-import { SIGN_IN } from '@/constants/constants.ts';
+import { ButtonPriority, ButtonType, SIGN_IN } from '@/constants/constants.ts';
 
 import classes from './signUp.module.css';
+
 const SignUp = () => {
   const { LocalizationData, locale } = useLocalization();
   const { authForm, navMenu } = LocalizationData;
@@ -84,11 +86,15 @@ const SignUp = () => {
           register={register}
           error={errors.confirmPassword?.message}
         />
-        <button type="submit">{authForm.btnText}</button>
+        <Button text={authForm.btnText} type={ButtonType.SUBMIT} className={classes.buttonSubmit} />
       </form>
       <div className={classes.view}>
         <p>{authForm.haveAccount}</p>
-        <button onClick={() => dispatch(setAuthView(SIGN_IN))}>{navMenu.signIn}</button>
+        <Button
+          text={navMenu.signIn}
+          priority={ButtonPriority.SECONDARY}
+          onClick={() => dispatch(setAuthView(SIGN_IN))}
+        />
       </div>
     </div>
   );

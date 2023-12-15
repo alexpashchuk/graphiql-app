@@ -1,16 +1,19 @@
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCallback, useEffect, useState } from 'react';
 import { collection, getDocs, query, where } from 'firebase/firestore';
+import clsx from 'clsx';
 
 import LogoUser from '@/assets/icons/user.svg';
 import { useAppDispatch } from '@/hooks/useRedux.ts';
 import { useLocalization } from '@/hooks/useLocalization';
-import { SIGN_IN, SIGN_UP } from '@/constants/constants.ts';
+import { paths, SIGN_IN, SIGN_UP } from '@/constants/constants.ts';
 import { setAuthView } from '@/store/slices/userSlice.tsx';
 import { auth, db, logout } from '@/firebase/firebase.ts';
 import { errorHandling } from '@/utils/errorHandling.ts';
-import { paths } from '@/constants/constants.ts';
+import { useWindowScrolled } from '@/utils/useWindowScrolled.ts';
+import Button from '@/components/Button/button.tsx';
+import Spinner from '@/components/Spinner/spinner.tsx';
 
 import classes from './header.module.css';
 
@@ -21,6 +24,7 @@ const Header = () => {
   const [user] = useAuthState(auth);
   const [name, setName] = useState('');
   const navigate = useNavigate();
+  const { isScrolled } = useWindowScrolled();
 
   const fetchUserName = useCallback(async () => {
     try {
@@ -45,9 +49,19 @@ const Header = () => {
     navigate(paths.auth);
   };
 
+  const handleSignIn = () => {
+    dispatch(setAuthView(SIGN_IN));
+    navigate(paths.auth);
+  };
+
+  const handleSignUp = () => {
+    dispatch(setAuthView(SIGN_UP));
+    navigate(paths.auth);
+  };
+
   return (
-    <header className={classes.header}>
-      <div className="container">
+    <header className={clsx(classes.header, isScrolled ? classes.scroll : '')}>
+      <div className={clsx('container', classes.wrapper)}>
         <nav className={classes.nav}>
           <NavLink className={classes.link} to={paths.welcome}>
             GraphiQL
@@ -56,24 +70,18 @@ const Header = () => {
             {user ? (
               <div className={classes.authNav}>
                 <div className={classes.authUser}>
-                  <LogoUser />
-                  {name && <p className={classes.name}>{name}</p>}
+                  <LogoUser className={classes.logoUser} />
+                  <p className={classes.name}>{name || <Spinner size={15} />}</p>
                 </div>
-                <button onClick={handleLogOut}>{navMenu.logout}</button>
+                <Button text={navMenu.logout} onClick={handleLogOut} />
               </div>
             ) : (
               <div className={classes.authNav}>
-                <Link to={paths.auth}>
-                  <button onClick={() => dispatch(setAuthView(SIGN_IN))}>{navMenu.signIn}</button>
-                </Link>
-                <Link to={paths.auth}>
-                  <button onClick={() => dispatch(setAuthView(SIGN_UP))}>{navMenu.signUp}</button>
-                </Link>
+                <Button text={navMenu.signIn} onClick={handleSignIn} />
+                <Button text={navMenu.signUp} onClick={handleSignUp} />
               </div>
             )}
-            <span className={classes.langBtn} onClick={handleSwitchLocale}>
-              {locale}
-            </span>
+            <Button text={locale} onClick={handleSwitchLocale} className={classes.langBtn} />
           </div>
         </nav>
       </div>

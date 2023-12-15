@@ -5,6 +5,8 @@ export const REGEX_PASSWORD_LOWER = /[a-z]/;
 export const REGEX_PASSWORD_UPPER = /[A-Z]/;
 export const REGEX_PASSWORD_NUMERIC = /[0-9]/;
 export const REGEX_PASSWORD_CHARACTER = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/;
+export const SIGN_IN = 'sign-in';
+export const SIGN_UP = 'sign-up';
 export enum Locale {
   EN = 'en',
   RU = 'ru',
@@ -16,5 +18,13 @@ export enum paths {
   auth = '/auth',
 }
 
-export const SIGN_IN = 'sign-in';
-export const SIGN_UP = 'sign-up';
+export enum ButtonType {
+  BUTTON = 'button',
+  SUBMIT = 'submit',
+  RESET = 'reset',
+}
+
+export enum ButtonPriority {
+  PRIMARY = 'primary',
+  SECONDARY = 'secondary',
+}
