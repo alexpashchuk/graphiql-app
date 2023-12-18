@@ -36,7 +36,10 @@ export default {
   welcomePage: {
     toEditor: 'Go to editor page',
   },
-  graphiQLPage: {},
+  graphiQLPage: {
+    docs: 'Docs',
+    docsInstruction: 'A GraphQL schema provides a root type for each kind of operation.',
+  },
   errorPage: {
     title: 'Error',
     text: 'Something went wrong',

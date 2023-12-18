@@ -1,0 +1,42 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.inputContainer {
+  width: 50%;
+  margin: 0 auto;
+}
+.container {
+  display: flex;
+  height: 100%;
+  margin: 0;
+  overflow: auto;
+  width: 100%;
+}
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 8px;
+}
+
+.iconBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  width: 44px;
+  height: 44px;
+  padding: 4px;
+  border: solid 2px #8080804f;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.4s ease-in-out;
+}
+.iconBtn:hover {
+  background-color: rgb(59 76 104 / 22%);
+}
+.activeDoc {
+  background-color: rgb(59 76 104 / 22%);
+}

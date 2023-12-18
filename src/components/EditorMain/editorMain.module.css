@@ -1,0 +1,74 @@
+.main {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.docs {
+  border-left: 1px solid #8080804f;
+  overflow-y: auto;
+  padding: 16px;
+  max-width: 200px;
+}
+.sessions {
+  display: flex;
+  flex-direction: row;
+  background-color: #8080804f;
+  border-radius: 8px;
+  padding: 8px;
+  width: 100%;
+}
+.editor {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  background-color: #fff;
+  border-radius: 8px;
+  width: 50%;
+  padding: 16px;
+}
+.response {
+  width: 50%;
+  padding: 16px;
+}
+.iconContainer {
+  position: absolute;
+  right: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.iconBtn,
+.toolsBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  width: 44px;
+  height: 44px;
+  padding: 4px;
+  border: solid 2px #8080804f;
+  border-radius: 6px;
+  color: yellowgreen;
+  cursor: pointer;
+  transition: 0.4s ease-in-out;
+}
+.iconBtn:hover {
+  background-color: rgb(59 76 104 / 22%);
+}
+.tools {
+  position: relative;
+  border-top: 1px solid #8080804f;
+  padding: 8px;
+}
+
+.toolsBtn {
+  position: absolute;
+  right: 0;
+  top: 5px;
+  border: solid 2px transparent;
+}
+.toolsBtn:hover {
+  border: solid 2px #8080804f;
+}

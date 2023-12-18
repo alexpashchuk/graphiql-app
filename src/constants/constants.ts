@@ -18,3 +18,8 @@ export enum paths {
 
 export const SIGN_IN = 'sign-in';
 export const SIGN_UP = 'sign-up';
+
+export const TabEnum = {
+  VARIABLES: 'Variables',
+  HEADERS: 'Headers',
+};
