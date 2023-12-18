@@ -13,14 +13,12 @@ const EditorPage = () => {
 
       <div className={classes.container}>
         <div className={classes.sidebar}>
-          <button>
-            <i
-              className={`${classes.iconBtn} ${isOpenDoc && classes.activeDoc}`}
-              onClick={() => setIsOpenDoc(!isOpenDoc)}
-            >
-              &#128210;
-            </i>
-          </button>
+          <i
+            className={`${classes.iconBtn} ${isOpenDoc && classes.activeDoc}`}
+            onClick={() => setIsOpenDoc(!isOpenDoc)}
+          >
+            &#128210;
+          </i>
         </div>
         <EditorMain isOpenDoc={isOpenDoc} />
       </div>

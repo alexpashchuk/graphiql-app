@@ -2,6 +2,7 @@ import { FC, useState } from 'react';
 import classes from './editorMain.module.css';
 import Tabs from '../Tabs/tabs';
 import { useLocalization } from '@/hooks/useLocalization';
+import Button from '../Button/button';
 
 interface EditorMainProps {
   isOpenDoc: boolean;
@@ -22,12 +23,8 @@ const EditorMain: FC<EditorMainProps> = ({ isOpenDoc }) => {
       <div className={classes.sessions}>
         <div className={classes.editor}>
           <div className={classes.iconContainer}>
-            <button>
-              <i className={classes.iconBtn}>&#10151;</i>
-            </button>
-            <button>
-              <i className={classes.iconBtn}>&#129529;</i>
-            </button>
+            <i className={classes.iconBtn}>&#10151;</i>
+            <i className={classes.iconBtn}>&#129529;</i>
           </div>
           <div>
             <h3>Editor</h3>
@@ -35,11 +32,10 @@ const EditorMain: FC<EditorMainProps> = ({ isOpenDoc }) => {
 
           <div className={classes.tools}>
             <Tabs isOpenTools={isOpenTools} />
-            <button>
-              <i className={classes.toolsBtn} onClick={() => setIsOpenTools(!isOpenTools)}>
-                {isOpenTools ? '\u25B2' : '\u25BC'}
-              </i>
-            </button>
+
+            <i className={classes.toolsBtn} onClick={() => setIsOpenTools(!isOpenTools)}>
+              {isOpenTools ? '\u25B2' : '\u25BC'}
+            </i>
           </div>
         </div>
         <div className={classes.response}>
