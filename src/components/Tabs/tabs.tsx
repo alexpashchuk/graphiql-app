@@ -18,7 +18,7 @@ const Tabs: FC<TabsProps> = ({ isOpenTools }) => {
     }
   }, [isOpenTools]);
 
-  const handleTabClick = (tab: string) => {
+  const handleTabClick = (tab: TabEnum) => {
     setActiveTab(tab);
   };
 

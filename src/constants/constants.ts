@@ -18,7 +18,17 @@ export enum paths {
   auth = '/auth',
 }
 
-export const TabEnum = {
-  VARIABLES: 'Variables',
-  HEADERS: 'Headers',
-};
+export enum ButtonType {
+  BUTTON = 'button',
+  SUBMIT = 'submit',
+  RESET = 'reset',
+}
+
+export enum ButtonPriority {
+  PRIMARY = 'primary',
+  SECONDARY = 'secondary',
+}
+export enum TabEnum {
+  VARIABLES = 'Variables',
+  HEADERS = 'Headers',
+}
