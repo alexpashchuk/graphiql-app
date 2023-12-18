@@ -16,7 +16,6 @@ const InputText = <T extends FieldValues>(props: InputTextProps<T>) => {
   const [showPassword, setShowPassword] = useState(false);
   const { LocalizationData } = useLocalization();
   const { authForm } = LocalizationData;
-  const registerField = field && register?.(field);
 
   return (
     <div className={classes.wrapper}>
@@ -26,7 +25,7 @@ const InputText = <T extends FieldValues>(props: InputTextProps<T>) => {
         </label>
         <div className={classes.inputWrapper}>
           <input
-            {...registerField}
+            {...(Boolean(field) && register?.(field!))}
             className={clsx(classes.input, error ? classes.errorInput : null)}
             id={field}
             type={type === 'password' && showPassword ? 'text' : type}

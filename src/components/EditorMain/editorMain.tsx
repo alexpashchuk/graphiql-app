@@ -3,11 +3,13 @@ import classes from './editorMain.module.css';
 import Tabs from '../Tabs/tabs';
 import { useLocalization } from '@/hooks/useLocalization';
 import { EditorMainProps } from '@/types/types';
+import { Arrow } from '@/constants/constants';
 
 const EditorMain: FC<EditorMainProps> = ({ isOpenDoc }) => {
   const [isOpenTools, setIsOpenTools] = useState(false);
   const { LocalizationData } = useLocalization();
   const { graphiQLPage } = LocalizationData;
+
   return (
     <div className={classes.main}>
       {isOpenDoc && (
@@ -29,8 +31,8 @@ const EditorMain: FC<EditorMainProps> = ({ isOpenDoc }) => {
 
           <div className={classes.tools}>
             <Tabs isOpenTools={isOpenTools} />
-            <i className={classes.toolsBtn} onClick={() => setIsOpenTools(!isOpenTools)}>
-              {isOpenTools ? '\u25B2' : '\u25BC'}
+            <i className={classes.toolsBtn} onClick={() => setIsOpenTools((isOpenTools) => !isOpenTools)}>
+              {isOpenTools ? Arrow.ARROW_UP : Arrow.ARROW_DOWN}
             </i>
           </div>
         </div>

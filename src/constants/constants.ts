@@ -32,3 +32,8 @@ export enum TabEnum {
   VARIABLES = 'Variables',
   HEADERS = 'Headers',
 }
+
+export enum Arrow {
+  ARROW_UP = '\u25B2',
+  ARROW_DOWN = '\u25BC',
+}

@@ -14,7 +14,10 @@ const EditorPage = () => {
 
       <div className={classes.container}>
         <div className={classes.sidebar}>
-          <i className={clsx(classes.iconBtn, isOpenDoc && classes.activeDoc)} onClick={() => setIsOpenDoc(!isOpenDoc)}>
+          <i
+            className={clsx(classes.iconBtn, isOpenDoc && classes.activeDoc)}
+            onClick={() => setIsOpenDoc((isOpenDoc) => !isOpenDoc)}
+          >
             &#128210;
           </i>
         </div>
