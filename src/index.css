@@ -44,9 +44,11 @@
   --color-light: #fafafa;
   --color-dark: #2a2d3d;
   --color-gray: #cdcdcd;
+  --color-text: #b0a8b9;
   --color-accent: #2c73d2;
-  --color-hover: #008e9b;
+  --color-hover: #0aa0ff;
   --color-error: #e31445;
+  --color-bg: #4b4453;
 
   --error-border: 2px solid var(--color-error);
   --input-border: 2px solid var(--color-accent);
@@ -147,7 +149,8 @@ html {
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  color: var(--color-dark);
+  color: var(--color-text);
+  background-color: var(--color-bg);
 }
 
 #root {
@@ -159,12 +162,13 @@ html {
 
 #root > main {
   flex: 1 1 auto;
+  padding-top: 5rem;
 }
 
 .container {
   display: flex;
   width: 100%;
-  max-width: 1180px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0.5rem;
 }
