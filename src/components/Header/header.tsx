@@ -71,7 +71,7 @@ const Header = () => {
               <div className={classes.authNav}>
                 <div className={classes.authUser}>
                   <LogoUser className={classes.logoUser} />
-                  <p className={classes.name}>{name || <Spinner size={15} />}</p>
+                  <div className={classes.name}>{name || <Spinner size={15} />}</div>
                 </div>
                 <Button text={navMenu.logout} onClick={handleLogOut} />
               </div>

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import classes from './editorPage.module.css';
 import EditorMain from '@/components/EditorMain/editorMain';
 import InputText from '@/components/InputText/inputText';
+import clsx from 'clsx';
 
 const EditorPage = () => {
   const [isOpenDoc, setIsOpenDoc] = useState(false);
@@ -13,10 +14,7 @@ const EditorPage = () => {
 
       <div className={classes.container}>
         <div className={classes.sidebar}>
-          <i
-            className={`${classes.iconBtn} ${isOpenDoc && classes.activeDoc}`}
-            onClick={() => setIsOpenDoc(!isOpenDoc)}
-          >
+          <i className={clsx(classes.iconBtn, isOpenDoc && classes.activeDoc)} onClick={() => setIsOpenDoc(!isOpenDoc)}>
             &#128210;
           </i>
         </div>

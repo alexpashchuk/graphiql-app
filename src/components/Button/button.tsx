@@ -44,7 +44,7 @@ const Button = (props: ButtonProps) => {
       onClick={onClick}
     >
       {children}
-      <p className={classes.text}>{loading ? <Spinner size={15} /> : text}</p>
+      <div className={classes.text}>{loading ? <Spinner size={15} /> : text}</div>
     </button>
   );
 

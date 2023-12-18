@@ -2,11 +2,8 @@ import { FC, useState } from 'react';
 import classes from './editorMain.module.css';
 import Tabs from '../Tabs/tabs';
 import { useLocalization } from '@/hooks/useLocalization';
-import Button from '../Button/button';
+import { EditorMainProps } from '@/types/types';
 
-interface EditorMainProps {
-  isOpenDoc: boolean;
-}
 const EditorMain: FC<EditorMainProps> = ({ isOpenDoc }) => {
   const [isOpenTools, setIsOpenTools] = useState(false);
   const { LocalizationData } = useLocalization();
@@ -32,7 +29,6 @@ const EditorMain: FC<EditorMainProps> = ({ isOpenDoc }) => {
 
           <div className={classes.tools}>
             <Tabs isOpenTools={isOpenTools} />
-
             <i className={classes.toolsBtn} onClick={() => setIsOpenTools(!isOpenTools)}>
               {isOpenTools ? '\u25B2' : '\u25BC'}
             </i>

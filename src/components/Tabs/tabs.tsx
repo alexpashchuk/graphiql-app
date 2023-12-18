@@ -1,6 +1,7 @@
 import { FC, useEffect, useRef, useState } from 'react';
 import classes from './tabs.module.css';
 import { TabEnum } from '@/constants/constants';
+import clsx from 'clsx';
 
 interface TabsProps {
   isOpenTools: boolean;
@@ -33,13 +34,13 @@ const Tabs: FC<TabsProps> = ({ isOpenTools }) => {
     <>
       <div>
         <button
-          className={`${classes.tab} ${activeTab === TabEnum.VARIABLES && classes.active}`}
+          className={clsx(classes.tab, activeTab === TabEnum.VARIABLES && classes.active)}
           onClick={() => handleTabClick(TabEnum.VARIABLES)}
         >
           {TabEnum.VARIABLES}
         </button>
         <button
-          className={`${classes.tab} ${activeTab === TabEnum.HEADERS && classes.active}`}
+          className={clsx(classes.tab, activeTab === TabEnum.HEADERS && classes.active)}
           onClick={() => handleTabClick(TabEnum.HEADERS)}
         >
           {TabEnum.HEADERS}

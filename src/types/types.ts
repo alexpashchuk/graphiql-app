@@ -10,3 +10,7 @@ export type InputTextProps<T extends FieldValues> = {
   password?: string;
   isProgress?: boolean;
 };
+
+export type EditorMainProps = {
+  isOpenDoc: boolean;
+};
