@@ -25,7 +25,7 @@ const InputText = <T extends FieldValues>(props: InputTextProps<T>) => {
         </label>
         <div className={classes.inputWrapper}>
           <input
-            {...register(field)}
+            {...(Boolean(field) && register?.(field!))}
             className={clsx(classes.input, error ? classes.errorInput : null)}
             id={field}
             type={type === 'password' && showPassword ? 'text' : type}

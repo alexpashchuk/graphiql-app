@@ -45,5 +45,8 @@ export default {
   welcomePage: {
     toEditor: 'Перейти в редактор',
   },
-  graphiQLPage: {},
+  graphiQLPage: {
+    docs: 'Документация',
+    docsInstruction: 'Схема GraphQL предоставляет корневой тип для каждого типа операции.',
+  },
 };
