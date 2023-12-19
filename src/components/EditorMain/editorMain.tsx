@@ -34,7 +34,7 @@ const EditorMain: FC<EditorMainProps> = ({ isOpenDoc }) => {
             <i className={classes.iconBtn}>&#10151;</i>
             <i className={classes.iconBtn}>&#129529;</i>
           </div>
-          <h3>Editor</h3>
+          <h3>{graphiQLPage.editor}</h3>
           <div className={classes.editorCode}>
             <GraphqlEditor initialValue={code} handlerChange={handlerChange} />
           </div>
@@ -47,7 +47,7 @@ const EditorMain: FC<EditorMainProps> = ({ isOpenDoc }) => {
           </div>
         </div>
         <div className={classes.response}>
-          <h3>Response</h3>
+          <h3>{graphiQLPage.response}</h3>
           <ResponseCode response={'code'} />
         </div>
       </div>

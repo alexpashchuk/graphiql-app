@@ -48,5 +48,7 @@ export default {
   graphiQLPage: {
     docs: 'Документация',
     docsInstruction: 'Схема GraphQL предоставляет корневой тип для каждого типа операции.',
+    editor: 'Редактор',
+    response: 'Ответ',
   },
 };

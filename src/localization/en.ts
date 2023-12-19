@@ -39,6 +39,8 @@ export default {
   graphiQLPage: {
     docs: 'Docs',
     docsInstruction: 'A GraphQL schema provides a root type for each kind of operation.',
+    editor: 'Editor',
+    response: 'Response',
   },
   errorPage: {
     title: 'Error',
