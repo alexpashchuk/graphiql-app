@@ -1,3 +1,4 @@
+import { ViewUpdate } from '@uiw/react-codemirror';
 import { Path, FieldValues, UseFormRegister } from 'react-hook-form';
 
 export type InputTextProps<T extends FieldValues> = {
@@ -13,4 +14,13 @@ export type InputTextProps<T extends FieldValues> = {
 
 export type EditorMainProps = {
   isOpenDoc: boolean;
+};
+
+export type EditorProps = {
+  initialValue: string;
+  handlerChange: (value: string, viewUpdate: ViewUpdate, tab?: string) => void;
+};
+
+export type ResponseProps = {
+  response: string;
 };

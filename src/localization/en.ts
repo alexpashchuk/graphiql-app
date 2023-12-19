@@ -40,6 +40,8 @@ export default {
     docs: 'Docs',
     docsInstruction: 'A GraphQL schema provides a root type for each kind of operation.',
     docsNotFound: 'Docs not found',
+    editor: 'Editor',
+    response: 'Response',
   },
   errorPage: {
     title: 'Error',

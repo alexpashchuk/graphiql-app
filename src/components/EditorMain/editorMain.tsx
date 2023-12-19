@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { FC, useState } from 'react';
 
 import { Arrow } from '@/constants/constants';
 import Response from '@/components/EditorMain/Response/response.tsx';
@@ -8,11 +8,15 @@ import QueryBody from '@/components/EditorMain/QueryBody/queryBody.tsx';
 import { useGraphqlDataQuery } from '@/services/api.ts';
 import { useAppSelector } from '@/hooks/useRedux.ts';
 import { selectGraphql } from '@/store/slices/graphqlSlice.tsx';
-
 import classes from './editorMain.module.css';
+import { useLocalization } from '@/hooks/useLocalization';
+import { EditorMainProps } from '@/types/types';
 
 const EditorMain = () => {
   const [isOpenTools, setIsOpenTools] = useState(false);
+  const { LocalizationData } = useLocalization();
+  const { graphiQLPage } = LocalizationData;
+
   const [queryResponse, setQueryResponse] = useState('');
   const { endpoint } = useAppSelector(selectGraphql);
 
@@ -58,6 +62,7 @@ const EditorMain = () => {
             <i className={classes.iconBtn}>&#129529;</i>
           </div>
           <QueryBody />
+
           <div className={classes.tools}>
             <Tabs isOpenTools={isOpenTools} />
             <i className={classes.toolsBtn} onClick={() => setIsOpenTools((isOpenTools) => !isOpenTools)}>
