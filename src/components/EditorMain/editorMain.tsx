@@ -12,7 +12,7 @@ import classes from './editorMain.module.css';
 import { useLocalization } from '@/hooks/useLocalization';
 import { EditorMainProps } from '@/types/types';
 
-const EditorMain: FC<EditorMainProps> = ({ isOpenDoc }) => {
+const EditorMain = () => {
   const [isOpenTools, setIsOpenTools] = useState(false);
   const { LocalizationData } = useLocalization();
   const { graphiQLPage } = LocalizationData;
@@ -52,12 +52,6 @@ const EditorMain: FC<EditorMainProps> = ({ isOpenDoc }) => {
 
   return (
     <div className={classes.main}>
-      {isOpenDoc && (
-        <div className={classes.docs}>
-          <h2>{graphiQLPage.docs}</h2>
-          <p>{graphiQLPage.docsInstruction}</p>
-        </div>
-      )}
       <div className={classes.sessions}>
         <div className={classes.editor}>
           <div className={classes.iconContainer}>
