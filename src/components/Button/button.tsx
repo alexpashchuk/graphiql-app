@@ -1,10 +1,8 @@
 import clsx from 'clsx';
 import { Link } from 'react-router-dom';
 import { ReactNode } from 'react';
-
 import Spinner from '@/components/Spinner/spinner.tsx';
 import { ButtonPriority, ButtonType } from '@/constants/constants.ts';
-
 import classes from './button.module.css';
 
 type ButtonProps = {

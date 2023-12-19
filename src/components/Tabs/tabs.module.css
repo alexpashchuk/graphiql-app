@@ -9,3 +9,7 @@
   width: 100%;
   overflow-y: auto;
 }
+.editorTools {
+  height: 75px;
+  overflow: auto;
+}
