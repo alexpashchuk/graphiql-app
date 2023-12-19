@@ -16,7 +16,7 @@ const EditorMain = () => {
   const [queryResponse, setQueryResponse] = useState('');
   const { endpoint } = useAppSelector(selectGraphql);
 
-  const onSuccess = (data: unknown) => {
+  const onSuccess = <T,>(data: T) => {
     const responseValue = JSON.stringify(data, null, '\t');
     setQueryResponse(responseValue);
   };

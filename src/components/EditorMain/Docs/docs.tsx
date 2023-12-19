@@ -3,7 +3,7 @@ import { GraphQLSchema } from 'graphql/type';
 import classes from '@/components/EditorMain/editorMain.module.css';
 
 type DocsProps = {
-  schema: GraphQLSchema | undefined;
+  schema?: GraphQLSchema;
 };
 
 const Docs = ({ schema }: DocsProps) => {
@@ -21,10 +21,12 @@ const Docs = ({ schema }: DocsProps) => {
       {schema ? (
         <div>
           <p>{queryType?.name}</p>
-          {typeMap && Object.values(typeMap).map((type) => <p key={type.name}>{type.name}</p>)}
+          {Object.values(typeMap ?? {}).map((type) => (
+            <p key={type.name}>{type.name}</p>
+          ))}
         </div>
       ) : (
-        <div>Docs not found</div>
+        <div>{graphiQLPage.docsNotFound}</div>
       )}
     </div>
   );

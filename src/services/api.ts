@@ -39,7 +39,7 @@ export const useSchemaQuery = (endpoint: string) => {
   });
 };
 
-export const useGraphqlDataQuery = (onSuccess: (data: unknown) => void) => {
+export const useGraphqlDataQuery = (onSuccess: <T>(data: T) => void) => {
   return useMutation({
     mutationKey: ['response'],
     mutationFn: fetchQueryResponse,
