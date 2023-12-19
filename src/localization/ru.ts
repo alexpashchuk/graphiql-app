@@ -48,5 +48,6 @@ export default {
   graphiQLPage: {
     docs: 'Документация',
     docsInstruction: 'Схема GraphQL предоставляет корневой тип для каждого типа операции.',
+    docsNotFound: 'Документация не найдена',
   },
 };

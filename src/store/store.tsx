@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import userReducer from './slices/userSlice.tsx';
+import graphqlReducer from './slices/graphqlSlice.tsx';
 
 const store = configureStore({
   reducer: {
     user: userReducer,
+    graphql: graphqlReducer,
   },
 });
 

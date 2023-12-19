@@ -7,7 +7,7 @@
   border-left: 1px solid #8080804f;
   overflow-y: auto;
   padding: 16px;
-  max-width: 200px;
+  max-width: 250px;
 }
 .sessions {
   display: flex;
@@ -22,7 +22,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: relative;
   background-color: #fff;
   border-radius: 8px;
   width: 50%;
