@@ -33,7 +33,7 @@ const EditorPage = () => {
           </i>
         </div>
         {isOpenDoc && <Docs schema={schema} />}
-        <EditorMain />
+        <EditorMain isOpenDoc={isOpenDoc} />
       </div>
     </section>
   );

@@ -27,10 +27,7 @@
   width: 50%;
   padding: 16px 55px 16px 16px;
 }
-.editorCode {
-  height: 100%;
-  overflow: auto;
-}
+
 .response {
   width: 50%;
   padding: 16px;

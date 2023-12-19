@@ -8,20 +8,15 @@ import QueryBody from '@/components/EditorMain/QueryBody/queryBody.tsx';
 import { useGraphqlDataQuery } from '@/services/api.ts';
 import { useAppSelector } from '@/hooks/useRedux.ts';
 import { selectGraphql } from '@/store/slices/graphqlSlice.tsx';
-
 import classes from './editorMain.module.css';
-
 import { useLocalization } from '@/hooks/useLocalization';
 import { EditorMainProps } from '@/types/types';
-import GraphqlEditor from '../EditorMirror/graphqlEditor';
-import { ViewUpdate } from '@uiw/react-codemirror';
-import ResponseCode from '../ResponseCode/responseCode';
 
 const EditorMain: FC<EditorMainProps> = ({ isOpenDoc }) => {
   const [isOpenTools, setIsOpenTools] = useState(false);
   const { LocalizationData } = useLocalization();
   const { graphiQLPage } = LocalizationData;
-  const [code, setCode] = useState('{ hello }');
+
   const [queryResponse, setQueryResponse] = useState('');
   const { endpoint } = useAppSelector(selectGraphql);
 
@@ -55,10 +50,6 @@ const EditorMain: FC<EditorMainProps> = ({ isOpenDoc }) => {
     });
   };
 
-  const handlerChange = (value: string, viewUpdate: ViewUpdate) => {
-    setCode(value);
-    console.log('viewUpdate', viewUpdate);
-  };
   return (
     <div className={classes.main}>
       {isOpenDoc && (
@@ -77,10 +68,6 @@ const EditorMain: FC<EditorMainProps> = ({ isOpenDoc }) => {
             <i className={classes.iconBtn}>&#129529;</i>
           </div>
           <QueryBody />
-          <h3>{graphiQLPage.editor}</h3>
-          <div className={classes.editorCode}>
-            <GraphqlEditor initialValue={code} handlerChange={handlerChange} />
-          </div>
 
           <div className={classes.tools}>
             <Tabs isOpenTools={isOpenTools} />
@@ -90,10 +77,6 @@ const EditorMain: FC<EditorMainProps> = ({ isOpenDoc }) => {
           </div>
         </div>
         <Response value={queryResponse} />
-        <div className={classes.response}>
-          <h3>{graphiQLPage.response}</h3>
-          <ResponseCode response={'code'} />
-        </div>
       </div>
     </div>
   );
