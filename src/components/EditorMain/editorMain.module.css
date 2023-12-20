@@ -3,6 +3,7 @@
   flex-direction: row;
   width: 100%;
 }
+
 .docs {
   border-left: 1px solid #8080804f;
   overflow-y: auto;
@@ -13,30 +14,51 @@
   border-bottom: 1px solid #8080804f;
   padding-bottom: 15px;
 }
-
 .sessions {
   display: flex;
   flex-direction: row;
   background-color: #8080804f;
   border-radius: 8px;
   padding: 8px;
+  gap: 1rem;
   width: 100%;
 }
+
 .editor {
   position: relative;
   display: flex;
   flex-direction: column;
+  background-color: var(--color-light);
   justify-content: space-between;
-  background-color: #fff;
   border-radius: 8px;
   width: 50%;
   padding: 16px 55px 16px 16px;
 }
 
+.queryEditorRoot {
+  height: 90%;
+}
+
+.queryEditorRootOpen {
+  height: 65%;
+}
+
+.queryEditorWrapper {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  height: 100%;
+}
+
 .response {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
   width: 50%;
   padding: 16px;
+  background-color: var(--color-light);
 }
+
 .iconContainer {
   position: absolute;
   right: 5px;
@@ -44,6 +66,7 @@
   flex-direction: column;
   gap: 15px;
 }
+
 .iconBtn,
 .toolsBtn {
   display: flex;
@@ -59,13 +82,21 @@
   cursor: pointer;
   transition: 0.4s ease-in-out;
 }
+
 .iconBtn:hover {
   background-color: rgb(59 76 104 / 22%);
 }
+
 .tools {
   position: relative;
   border-top: 1px solid #8080804f;
   padding: 8px;
+  height: 10%;
+  transition: all 0.3ms;
+}
+
+.toolsOpen {
+  height: 35%;
 }
 
 .toolsBtn {

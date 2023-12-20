@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { buildClientSchema, getIntrospectionQuery } from 'graphql';
 import { useMutation, useQuery } from '@tanstack/react-query';
 
@@ -39,10 +39,11 @@ export const useSchemaQuery = (endpoint: string) => {
   });
 };
 
-export const useGraphqlDataQuery = (onSuccess: <T>(data: T) => void) => {
+export const useGraphqlDataQuery = (onSuccess: <T>(data: T) => void, onError: (error: AxiosError | Error) => void) => {
   return useMutation({
     mutationKey: ['response'],
     mutationFn: fetchQueryResponse,
     onSuccess: onSuccess,
+    onError: onError,
   });
 };

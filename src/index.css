@@ -52,6 +52,9 @@
 
   --error-border: 2px solid var(--color-error);
   --input-border: 2px solid var(--color-accent);
+
+  --height-header: 5rem;
+  --height-footer: 3.5rem;
 }
 
 * {
@@ -124,11 +127,12 @@ button::-moz-focus-inner {
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-dark);
+  background: var(--color-gray);
 }
 
 ::-webkit-scrollbar-thumb {

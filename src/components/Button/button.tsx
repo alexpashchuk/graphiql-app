@@ -6,7 +6,8 @@ import { ButtonPriority, ButtonType } from '@/constants/constants.ts';
 import classes from './button.module.css';
 
 type ButtonProps = {
-  text: string;
+  text?: string;
+  title?: string;
   className?: string;
   type?: `${ButtonType}`;
   priority?: `${ButtonPriority}`;
@@ -20,6 +21,7 @@ type ButtonProps = {
 const Button = (props: ButtonProps) => {
   const {
     text,
+    title,
     className,
     priority = ButtonPriority.PRIMARY,
     disabled,
@@ -32,6 +34,7 @@ const Button = (props: ButtonProps) => {
 
   const button = (
     <button
+      title={title}
       type={type}
       disabled={disabled}
       className={clsx(

@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '@/firebase/firebase.ts';
 
@@ -32,7 +32,7 @@ const WelcomePage = () => {
     <section className={classes.root}>
       <h1>Welcome Page</h1>
       {user ? (
-        <Link to={paths.main}>{welcomePage.toEditor}</Link>
+        <Button linkHref={paths.main} text={welcomePage.toEditor} />
       ) : (
         <div className={classes.authNav}>
           <Button text={navMenu.signIn} onClick={handleSignIn} />
