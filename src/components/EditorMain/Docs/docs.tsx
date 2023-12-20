@@ -17,7 +17,7 @@ const Docs = ({ schema }: DocsProps) => {
   return (
     <div className={classes.docs}>
       <h2>{graphiQLPage.docs}</h2>
-      <p>{graphiQLPage.docsInstruction}</p>
+      <p className={classes.about}>{graphiQLPage.docsInstruction}</p>
       {schema ? (
         <div>
           <p>{queryType?.name}</p>
