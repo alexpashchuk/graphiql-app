@@ -51,5 +51,8 @@ export default {
     docsNotFound: 'Документация не найдена',
     editor: 'Редактор',
     response: 'Ответ',
+    queryEnter: 'Введите ваш запрос',
+    endpointEnter: 'Введите API запроса',
+    endpointSubmit: 'Подтвердите API запроса',
   },
 };

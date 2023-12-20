@@ -42,6 +42,9 @@ export default {
     docsNotFound: 'Docs not found',
     editor: 'Editor',
     response: 'Response',
+    queryEnter: 'Enter your query',
+    endpointEnter: 'Enter an API endpoint',
+    endpointSubmit: 'Submit an API endpoint',
   },
   errorPage: {
     title: 'Error',

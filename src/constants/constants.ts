@@ -7,6 +7,7 @@ export const REGEX_PASSWORD_NUMERIC = /[0-9]/;
 export const REGEX_PASSWORD_CHARACTER = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/;
 export const SIGN_IN = 'sign-in';
 export const SIGN_UP = 'sign-up';
+export const BASE_URL = 'https://rickandmortyapi.com/graphql';
 export enum Locale {
   EN = 'en',
   RU = 'ru',
