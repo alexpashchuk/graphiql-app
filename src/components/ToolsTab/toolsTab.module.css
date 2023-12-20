@@ -1,15 +1,22 @@
 .tab {
   margin: 0 15px 15px 0;
 }
+
 .active {
   font-weight: 700;
 }
+
 .textarea {
   min-height: 75px;
   width: 100%;
   overflow-y: auto;
 }
+
 .editorTools {
-  height: 75px;
+  height: calc(100% - 2.5rem);
   overflow: auto;
+}
+
+.headerTools {
+  height: 2.5rem;
 }
