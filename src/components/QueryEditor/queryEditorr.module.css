@@ -1,5 +1,6 @@
 .editor {
   height: 100%;
   overflow: auto;
-  max-width: inherit;
+
+  max-width: 100%;
 }

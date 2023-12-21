@@ -20,7 +20,6 @@ const QueryEditor = (props: QueryEditorProps) => {
       placeholder={placeholder}
       extensions={extension}
       onChange={onChange}
-      // lineWrapping={true}
       editable={isEditable}
     />
   );

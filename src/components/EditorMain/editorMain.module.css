@@ -112,7 +112,9 @@
 .back {
   padding: 15px 0;
 }
-
+.type {
+  color: var(--color-accent);
+}
 .type:hover {
   cursor: pointer;
   text-decoration: underline;
