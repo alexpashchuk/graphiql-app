@@ -9,6 +9,7 @@ import { selectGraphql, setQuery } from '@/store/slices/graphqlSlice.tsx';
 import { useLocalization } from '@/hooks/useLocalization';
 
 import { extensions } from '@/utils/codemirrorExtensions.ts';
+import { parseStringToJSON } from '@/utils/parseStringToJSON.ts';
 import QueryEditor from '@/components/QueryEditor/queryEditor.tsx';
 import ToolsTab from '@/components/ToolsTab/toolsTab.tsx';
 import { Arrow } from '@/constants/constants';
@@ -48,8 +49,8 @@ const EditorMain = ({ schema }: EditorMainProps) => {
       mutate({
         endpoint,
         query,
-        headers,
-        variables,
+        headers: parseStringToJSON(headers || '{}'),
+        variables: parseStringToJSON(variables || '{}'),
       });
     } catch (err) {
       setQueryResponse((err as Error).message);
