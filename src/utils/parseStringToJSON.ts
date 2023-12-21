@@ -4,8 +4,8 @@ export const parseStringToJSON = (objAsString: string) => {
     if (obj && (typeof obj === 'object' || typeof obj === 'string')) {
       return obj;
     }
+    return undefined;
   } catch (error) {
     throw new Error((error as Error).message);
   }
-  return undefined;
 };

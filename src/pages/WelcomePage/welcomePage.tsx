@@ -29,21 +29,19 @@ const WelcomePage = () => {
     navigate(paths.auth);
   };
 
+  const authNav = user ? (
+    <Button linkHref={paths.main} text={welcomePage.toEditor} />
+  ) : (
+    <div className={classes.authNav}>
+      <Button text={navMenu.signIn} onClick={handleSignIn} />
+      <Button text={navMenu.signUp} onClick={handleSignUp} />
+    </div>
+  );
+
   return (
     <section className={classes.root}>
       <h1>Welcome Page</h1>
-      <div className={classes.buttonsWrapper}>
-        {isLoading ? (
-          <Spinner size={35} />
-        ) : user ? (
-          <Button linkHref={paths.main} text={welcomePage.toEditor} />
-        ) : (
-          <div className={classes.authNav}>
-            <Button text={navMenu.signIn} onClick={handleSignIn} />
-            <Button text={navMenu.signUp} onClick={handleSignUp} />
-          </div>
-        )}
-      </div>
+      <div className={classes.buttonsWrapper}>{isLoading ? <Spinner size={35} /> : authNav}</div>
     </section>
   );
 };

@@ -60,6 +60,21 @@ const Header = () => {
     navigate(paths.auth);
   };
 
+  const authNav = user ? (
+    <div className={classes.authNav}>
+      <div className={classes.authUser}>
+        <LogoUser className={classes.logoUser} />
+        <div className={classes.name}>{name || <Spinner size={15} />}</div>
+      </div>
+      <Button text={navMenu.logout} onClick={handleLogOut} />
+    </div>
+  ) : (
+    <div className={classes.authNav}>
+      <Button text={navMenu.signIn} onClick={handleSignIn} />
+      <Button text={navMenu.signUp} onClick={handleSignUp} />
+    </div>
+  );
+
   return (
     <header className={clsx(classes.header, isScrolled ? classes.scroll : '')}>
       <div className={clsx('container', classes.wrapper)}>
@@ -68,22 +83,7 @@ const Header = () => {
             <GraphQLLogo className={classes.logo} />
           </NavLink>
           <div className={classes.authNav}>
-            {isLoading ? (
-              <Spinner size={35} />
-            ) : user ? (
-              <div className={classes.authNav}>
-                <div className={classes.authUser}>
-                  <LogoUser className={classes.logoUser} />
-                  <div className={classes.name}>{name || <Spinner size={15} />}</div>
-                </div>
-                <Button text={navMenu.logout} onClick={handleLogOut} />
-              </div>
-            ) : (
-              <div className={classes.authNav}>
-                <Button text={navMenu.signIn} onClick={handleSignIn} />
-                <Button text={navMenu.signUp} onClick={handleSignUp} />
-              </div>
-            )}
+            {isLoading ? <Spinner size={35} /> : authNav}
             <Button text={locale} onClick={handleSwitchLocale} className={classes.langBtn} />
           </div>
         </nav>
