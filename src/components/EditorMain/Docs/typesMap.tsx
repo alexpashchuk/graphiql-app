@@ -4,7 +4,7 @@ import { GraphQLSchema } from 'graphql/type';
 import { FC } from 'react';
 
 type TypesMapProps = {
-  schema: GraphQLSchema | undefined;
+  schema?: GraphQLSchema;
   handleTypeClick: (name: string) => void;
 };
 

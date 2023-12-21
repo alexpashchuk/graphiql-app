@@ -46,26 +46,17 @@ const Docs = ({ schema }: DocsProps) => {
       setTypeHistory([]);
     }
   };
+  const docsTypes = selectedType ? (
+    <SelectedTypes handleBackClick={handleBackClick} handleTypeClick={handleTypeClick} selectedType={selectedType} />
+  ) : (
+    <TypesMap schema={schema} handleTypeClick={handleTypeClick} />
+  );
 
   return (
     <div className={classes.docs}>
       <h2>{graphiQLPage.docs}</h2>
       <p className={classes.about}>{graphiQLPage.docsInstruction}</p>
-      {schema ? (
-        <>
-          {selectedType ? (
-            <SelectedTypes
-              handleBackClick={handleBackClick}
-              handleTypeClick={handleTypeClick}
-              selectedType={selectedType}
-            />
-          ) : (
-            <TypesMap schema={schema} handleTypeClick={handleTypeClick} />
-          )}
-        </>
-      ) : (
-        <>{graphiQLPage.docsNotFound}</>
-      )}
+      {schema ? <>{docsTypes}</> : <>{graphiQLPage.docsNotFound}</>}
     </div>
   );
 };
