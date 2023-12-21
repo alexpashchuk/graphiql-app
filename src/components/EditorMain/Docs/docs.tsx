@@ -5,24 +5,32 @@ import { DocsProps, TypeNode } from '@/types/types';
 import { buildTypeHierarchy } from '@/helpers/helpers';
 import TypesMap from './typesMap';
 import SelectedTypes from './selectedTypes';
+import { GraphQLObjectType } from 'graphql/type';
 
 const Docs = ({ schema }: DocsProps) => {
   const { LocalizationData } = useLocalization();
   const { graphiQLPage } = LocalizationData;
   const [selectedType, setSelectedType] = useState<TypeNode | null>(null);
   const [typeHistory, setTypeHistory] = useState<TypeNode[]>([]);
-  const queryType = schema?.getQueryType();
-  const typeMap = schema?.getTypeMap();
-  console.log('queryType', queryType);
-  console.log('typeMap', typeMap);
 
   const handleTypeClick = (typeName: string) => {
     if (schema) {
-      const selectedType = schema.getType(typeName);
-      if (selectedType) {
-        const typeNode = buildTypeHierarchy(selectedType, new Set());
-        setTypeHistory((prevHistory) => [...prevHistory, typeNode]);
-        setSelectedType(typeNode);
+      if (typeName === 'Query' && schema.getType(typeName) instanceof GraphQLObjectType) {
+        if (!selectedType) {
+          const selectedType = schema.getType(typeName);
+          if (selectedType) {
+            const typeNode = buildTypeHierarchy(selectedType, new Set());
+            setTypeHistory((prevHistory) => [...prevHistory, typeNode]);
+            setSelectedType(typeNode);
+          }
+        }
+      } else {
+        const selectedType = schema.getType(typeName);
+        if (selectedType) {
+          const typeNode = buildTypeHierarchy(selectedType, new Set());
+          setTypeHistory((prevHistory) => [...prevHistory, typeNode]);
+          setSelectedType(typeNode);
+        }
       }
     }
   };
