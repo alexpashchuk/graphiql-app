@@ -1,4 +1,5 @@
 import CodeMirror, { Extension } from '@uiw/react-codemirror';
+import { customTheme } from '@/utils/codemirrorExtensions.ts';
 
 import classes from './queryEditorr.module.css';
 
@@ -21,6 +22,7 @@ const QueryEditor = (props: QueryEditorProps) => {
       extensions={extension}
       onChange={onChange}
       editable={isEditable}
+      theme={customTheme}
     />
   );
 };

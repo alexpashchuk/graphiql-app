@@ -8,13 +8,14 @@ import { paths } from '@/constants/constants.ts';
 import { SIGN_IN, SIGN_UP } from '@/constants/constants.ts';
 import { useLocalization } from '@/hooks/useLocalization.ts';
 import Button from '@/components/Button/button.tsx';
+import Spinner from '@/components/Spinner/spinner.tsx';
 
 import classes from './welcomePage.module.css';
 
 const WelcomePage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [user] = useAuthState(auth);
+  const [user, isLoading] = useAuthState(auth);
   const { LocalizationData } = useLocalization();
   const { navMenu, welcomePage } = LocalizationData;
 
@@ -28,17 +29,19 @@ const WelcomePage = () => {
     navigate(paths.auth);
   };
 
+  const authNav = user ? (
+    <Button linkHref={paths.main} text={welcomePage.toEditor} />
+  ) : (
+    <div className={classes.authNav}>
+      <Button text={navMenu.signIn} onClick={handleSignIn} />
+      <Button text={navMenu.signUp} onClick={handleSignUp} />
+    </div>
+  );
+
   return (
     <section className={classes.root}>
       <h1>Welcome Page</h1>
-      {user ? (
-        <Button linkHref={paths.main} text={welcomePage.toEditor} />
-      ) : (
-        <div className={classes.authNav}>
-          <Button text={navMenu.signIn} onClick={handleSignIn} />
-          <Button text={navMenu.signUp} onClick={handleSignUp} />
-        </div>
-      )}
+      <div className={classes.buttonsWrapper}>{isLoading ? <Spinner size={35} /> : authNav}</div>
     </section>
   );
 };
