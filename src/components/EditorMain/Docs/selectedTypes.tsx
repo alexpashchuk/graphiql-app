@@ -8,6 +8,7 @@ type SelectedTypesProps = {
   handleTypeClick: (name: string) => void;
   selectedType: TypeNode;
 };
+
 const SelectedTypes: FC<SelectedTypesProps> = ({ handleBackClick, handleTypeClick, selectedType }) => {
   const { LocalizationData } = useLocalization();
   const { graphiQLPage } = LocalizationData;

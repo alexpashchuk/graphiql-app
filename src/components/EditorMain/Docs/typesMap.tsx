@@ -1,6 +1,5 @@
 import classes from '@/components/EditorMain/editorMain.module.css';
 import { useLocalization } from '@/hooks/useLocalization';
-
 import { GraphQLSchema } from 'graphql/type';
 import { FC } from 'react';
 
@@ -8,6 +7,7 @@ type TypesMapProps = {
   schema: GraphQLSchema | undefined;
   handleTypeClick: (name: string) => void;
 };
+
 const TypesMap: FC<TypesMapProps> = ({ schema, handleTypeClick }) => {
   const { LocalizationData } = useLocalization();
   const { graphiQLPage } = LocalizationData;

@@ -1,18 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useLocalization } from '@/hooks/useLocalization.ts';
-import {
-  GraphQLList,
-  GraphQLNonNull,
-  GraphQLObjectType,
-  GraphQLSchema,
-  GraphQLType,
-  GraphQLField,
-  GraphQLScalarType,
-  GraphQLInputObjectType,
-  GraphQLEnumType,
-} from 'graphql/type';
 import classes from '@/components/EditorMain/editorMain.module.css';
-import { DocsProps, FieldNode, TypeNode } from '@/types/types';
+import { DocsProps, TypeNode } from '@/types/types';
 import { buildTypeHierarchy } from '@/helpers/helpers';
 import TypesMap from './typesMap';
 import SelectedTypes from './selectedTypes';
