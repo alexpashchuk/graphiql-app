@@ -10,7 +10,10 @@
   padding: 16px;
   max-width: 250px;
 }
-
+.about {
+  border-bottom: 1px solid #8080804f;
+  padding-bottom: 15px;
+}
 .sessions {
   display: flex;
   flex-direction: row;
@@ -104,4 +107,15 @@
 }
 .toolsBtn:hover {
   border: solid 2px #8080804f;
+}
+.subtitle,
+.back {
+  padding: 15px 0;
+}
+.type {
+  color: var(--color-accent);
+}
+.type:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }

@@ -45,6 +45,9 @@ export default {
     queryEnter: 'Enter your query',
     endpointEnter: 'Enter an API endpoint',
     endpointSubmit: 'Submit an API endpoint',
+    back: '\u2190 Back',
+    rootType: 'Root Types',
+    schemaTypes: 'All Schema Types',
   },
   errorPage: {
     title: 'Error',

@@ -1,4 +1,5 @@
 import { ViewUpdate } from '@uiw/react-codemirror';
+import { GraphQLSchema } from 'graphql';
 import { Path, FieldValues, UseFormRegister } from 'react-hook-form';
 
 export type InputTextProps<T extends FieldValues> = {
@@ -23,4 +24,20 @@ export type EditorProps = {
 
 export type ResponseProps = {
   response: string;
+};
+export type DocsProps = {
+  schema?: GraphQLSchema;
+};
+
+export type TypeNode = {
+  name: string;
+  description?: string | null;
+  fields?: FieldNode[];
+  subtypes?: TypeNode[];
+};
+
+export type FieldNode = {
+  name: string;
+  description?: string | null;
+  type: TypeNode;
 };
