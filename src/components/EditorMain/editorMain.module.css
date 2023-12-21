@@ -108,3 +108,12 @@
 .toolsBtn:hover {
   border: solid 2px #8080804f;
 }
+.subtitle,
+.back {
+  padding: 15px 0;
+}
+
+.type:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}

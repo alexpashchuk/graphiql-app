@@ -54,5 +54,8 @@ export default {
     queryEnter: 'Введите ваш запрос',
     endpointEnter: 'Введите API запроса',
     endpointSubmit: 'Подтвердите API запроса',
+    back: '\u2190 Назад',
+    rootType: 'Основные Типы',
+    schemaTypes: 'Все Типы Схемы',
   },
 };
