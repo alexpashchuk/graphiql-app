@@ -1,6 +1,6 @@
 .queryForm {
   display: flex;
-  gap: 1rem;
+  gap: 0.5rem;
   justify-content: space-between;
 }
 
@@ -11,4 +11,5 @@
   width: 100%;
   padding: 5px;
   background-color: #8080804f;
+  height: 44px;
 }

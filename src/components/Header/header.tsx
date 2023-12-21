@@ -14,6 +14,7 @@ import { errorHandling } from '@/utils/errorHandling.ts';
 import { useWindowScrolled } from '@/utils/useWindowScrolled.ts';
 import Button from '@/components/Button/button.tsx';
 import Spinner from '@/components/Spinner/spinner.tsx';
+import GraphQLLogo from '@/assets/icons/graphql.svg';
 
 import classes from './header.module.css';
 
@@ -21,7 +22,7 @@ const Header = () => {
   const dispatch = useAppDispatch();
   const { handleSwitchLocale, locale, LocalizationData } = useLocalization();
   const { navMenu } = LocalizationData;
-  const [user] = useAuthState(auth);
+  const [user, isLoading] = useAuthState(auth);
   const [name, setName] = useState('');
   const navigate = useNavigate();
   const { isScrolled } = useWindowScrolled();
@@ -64,10 +65,12 @@ const Header = () => {
       <div className={clsx('container', classes.wrapper)}>
         <nav className={classes.nav}>
           <NavLink className={classes.link} to={paths.welcome}>
-            GraphiQL
+            <GraphQLLogo className={classes.logo} />
           </NavLink>
           <div className={classes.authNav}>
-            {user ? (
+            {isLoading ? (
+              <Spinner size={35} />
+            ) : user ? (
               <div className={classes.authNav}>
                 <div className={classes.authUser}>
                   <LogoUser className={classes.logoUser} />
