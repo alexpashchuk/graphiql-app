@@ -1,7 +1,12 @@
 .root {
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
-  gap: 1rem;
+  gap: 3rem;
+  margin: 0 auto;
+  text-align: center;
+  max-width: 1280px;
 }
 
 .authNav {
@@ -12,6 +17,66 @@
 
 .buttonsWrapper {
   position: relative;
-  min-width: 200px;
   min-height: 40px;
+}
+
+.titleWelcome {
+  text-align: center;
+  font-size: 20px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.link {
+  transition: all 0.3s;
+}
+
+.link:hover {
+  color: var(--color-hover);
+}
+
+.logoRss {
+  width: 120px;
+}
+
+.rssAbout {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  max-width: 500px;
+}
+
+.devContent {
+  border-left: 3px solid var(--color-accent);
+  padding-left: 0.5rem;
+  text-align: left;
+}
+
+.text {
+  text-align: left;
+}
+
+.developers,
+.sponsored {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .titleWelcome {
+    font-size: 18px;
+  }
+
+  .rssAbout {
+    flex-direction: column-reverse;
+    gap: 1rem;
+  }
+
+  .text {
+    text-align: center;
+  }
 }

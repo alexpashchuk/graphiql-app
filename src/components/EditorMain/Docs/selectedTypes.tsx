@@ -1,7 +1,8 @@
-import classes from '@/components/EditorMain/editorMain.module.css';
+import { FC } from 'react';
 import { useLocalization } from '@/hooks/useLocalization';
 import { TypeNode } from '@/types/types';
-import { FC } from 'react';
+
+import classes from './docs.module.css';
 
 type SelectedTypesProps = {
   handleBackClick: () => void;

@@ -1,7 +1,7 @@
 import CodeMirror, { Extension } from '@uiw/react-codemirror';
 import { customTheme } from '@/utils/codemirrorExtensions.ts';
 
-import classes from './queryEditorr.module.css';
+import classes from './queryEditor.module.css';
 
 type QueryEditorProps = {
   value: string;

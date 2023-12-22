@@ -1,0 +1,11 @@
+.editor {
+  height: 100%;
+  overflow: auto;
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .editor {
+    max-height: 800px;
+  }
+}
