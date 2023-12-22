@@ -6,15 +6,15 @@ type RequestQuery = {
   endpoint: string;
   query: string;
   variables: string;
-  headers: string;
+  headers: Record<string, string>;
 };
-// TODO add Error handling https://app.asana.com/0/1206001149209373/1206205651066276
+
 const fetchQueryResponse = async ({ endpoint, query, variables, headers }: RequestQuery) => {
   const { data } = await axios.post(
     endpoint,
     { query, variables },
     {
-      headers: { 'Content-Type': 'application/json', headers },
+      headers: { 'Content-Type': 'application/json', ...headers },
     }
   );
   return data;
