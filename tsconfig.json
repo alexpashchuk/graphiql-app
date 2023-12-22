@@ -22,7 +22,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "types": ["prettier"]
   },
   "include": ["./src/**/*", "vite.config.ts", "vitest.config.ts", "./src/test/setupTests.ts", ".eslintrc", "svg.d.ts"],
   "exclude": ["node_modules", "dist"],

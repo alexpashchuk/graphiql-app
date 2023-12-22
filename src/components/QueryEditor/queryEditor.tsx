@@ -2,6 +2,7 @@ import CodeMirror, { Extension } from '@uiw/react-codemirror';
 import { customTheme } from '@/utils/codemirrorExtensions.ts';
 
 import classes from './queryEditorr.module.css';
+import { useEffect, useState } from 'react';
 
 type QueryEditorProps = {
   value: string;
@@ -13,6 +14,7 @@ type QueryEditorProps = {
 
 const QueryEditor = (props: QueryEditorProps) => {
   const { value, placeholder, extension, onChange, isEditable = true } = props;
+
   return (
     <CodeMirror
       className={classes.editor}

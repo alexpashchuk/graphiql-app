@@ -16,6 +16,7 @@ import { Arrow } from '@/constants/constants';
 import QueryEndpoint from '@/components/EditorMain/QueryEndpoint/queryEndpoint.tsx';
 
 import classes from './editorMain.module.css';
+import { prettifyGraphQL } from '@/helpers/helpers';
 
 type EditorMainProps = {
   schema?: GraphQLSchema;
@@ -24,6 +25,7 @@ type EditorMainProps = {
 const EditorMain = ({ schema }: EditorMainProps) => {
   const dispatch = useAppDispatch();
   const [isOpenTools, setIsOpenTools] = useState(false);
+  const [editorValue, setEditorValue] = useState('');
   const [queryResponse, setQueryResponse] = useState('');
   const { LocalizationData } = useLocalization();
   const { graphiQLPage } = LocalizationData;
@@ -58,7 +60,17 @@ const EditorMain = ({ schema }: EditorMainProps) => {
   };
 
   const onChangeQuery = (value: string) => {
+    setEditorValue(value);
     dispatch(setQuery(value));
+  };
+
+  const handlePrettifyQuery = async () => {
+    try {
+      const formattedCode = prettifyGraphQL(editorValue);
+      setEditorValue(formattedCode);
+    } catch (error) {
+      console.error('Error formatting code:', error);
+    }
   };
 
   return (
@@ -69,14 +81,15 @@ const EditorMain = ({ schema }: EditorMainProps) => {
             <button onClick={handleRunQuery}>
               <i className={classes.iconBtn}>&#10151;</i>
             </button>
-            {/*TODO add Prettifying button https://app.asana.com/0/1206001149209373/1206205651066280*/}
-            <i className={classes.iconBtn}>&#129529;</i>
+            <button onClick={handlePrettifyQuery}>
+              <i className={classes.iconBtn}>&#129529;</i>
+            </button>
           </div>
           <div className={clsx(classes.queryEditorRoot, isOpenTools && classes.queryEditorRootOpen)}>
             <div className={classes.queryEditorWrapper}>
               <QueryEndpoint />
               <QueryEditor
-                value=""
+                value={editorValue}
                 placeholder={graphiQLPage.queryEnter}
                 extension={extensions(schema)}
                 onChange={onChangeQuery}

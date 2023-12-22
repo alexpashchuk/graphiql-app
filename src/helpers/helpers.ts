@@ -87,3 +87,27 @@ export const buildTypeHierarchy = (parentType: GraphQLType, visitedTypes: Set<st
     };
   }
 };
+
+export const prettifyGraphQL = (code: string): string => {
+  let indentLevel = 0;
+  const lines = code.split('\n');
+  const formattedLines = [];
+
+  for (let line of lines) {
+    line = line.trim();
+
+    if (line.endsWith('}')) {
+      indentLevel--;
+    }
+
+    if (line) {
+      formattedLines.push('  '.repeat(indentLevel) + line);
+    }
+
+    if (line.endsWith('{')) {
+      indentLevel++;
+    }
+  }
+
+  return formattedLines.join('\n');
+};
