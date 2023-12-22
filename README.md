@@ -2,6 +2,10 @@
 
 GraphiQL is a playground/IDE for graphQL requests
 
+## Deployment
+
+- [GraphiQL](https://graphiql-app-rss-2024.netlify.app/)
+
 ## Developers:
 
 - [Alexey Pashchuk](https://github.com/alexpashchuk)
@@ -25,6 +29,7 @@ GraphiQL is a playground/IDE for graphQL requests
 - React Router
 - React Context
 - Redux, Redux Toolkit
+- React Query
 - GraphQL
 - Firebase
 - React Hook Form, Yup

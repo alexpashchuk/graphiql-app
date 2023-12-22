@@ -15,6 +15,8 @@ import { useWindowScrolled } from '@/utils/useWindowScrolled.ts';
 import Button from '@/components/Button/button.tsx';
 import Spinner from '@/components/Spinner/spinner.tsx';
 import GraphQLLogo from '@/assets/icons/graphql.svg';
+import MenuOpenLogo from '@/assets/icons/menu-open.svg';
+import MenuCloseLogo from '@/assets/icons/menu-close.svg';
 
 import classes from './header.module.css';
 
@@ -24,8 +26,9 @@ const Header = () => {
   const { navMenu } = LocalizationData;
   const [user, isLoading] = useAuthState(auth);
   const [name, setName] = useState('');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const { isScrolled } = useWindowScrolled();
+  const { isScrolled } = useWindowScrolled(isMenuOpen);
 
   const fetchUserName = useCallback(async () => {
     try {
@@ -45,17 +48,20 @@ const Header = () => {
   }, [user, fetchUserName, navigate]);
 
   const handleLogOut = async () => {
+    setIsMenuOpen(false);
     await logout();
     setName('');
     navigate(paths.auth);
   };
 
   const handleSignIn = () => {
+    setIsMenuOpen(false);
     dispatch(setAuthView(SIGN_IN));
     navigate(paths.auth);
   };
 
   const handleSignUp = () => {
+    setIsMenuOpen(false);
     dispatch(setAuthView(SIGN_UP));
     navigate(paths.auth);
   };
@@ -82,7 +88,14 @@ const Header = () => {
           <NavLink className={classes.link} to={paths.welcome}>
             <GraphQLLogo className={classes.logo} />
           </NavLink>
-          <div className={classes.authNav}>
+          <Button
+            className={classes.menuTrigger}
+            onClick={() => setIsMenuOpen((prev) => !prev)}
+            title={isMenuOpen ? navMenu.closeMenu : navMenu.openMenu}
+          >
+            {isMenuOpen ? <MenuCloseLogo /> : <MenuOpenLogo />}
+          </Button>
+          <div className={clsx(classes.authNavWrapper, isMenuOpen && classes.menuOpen)}>
             {isLoading ? <Spinner size={35} /> : authNav}
             <Button text={locale} onClick={handleSwitchLocale} className={classes.langBtn} />
           </div>

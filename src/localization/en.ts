@@ -4,6 +4,8 @@ export default {
     signIn: 'Sign in',
     signUp: 'Sign up',
     logout: 'Logout',
+    openMenu: 'Menu open',
+    closeMenu: 'Menu close',
   },
   authForm: {
     signInTitle: 'Sign In',
@@ -34,7 +36,16 @@ export default {
   },
 
   welcomePage: {
-    toEditor: 'Go to editor page',
+    welcomeTitle:
+      'GraphiQL is the GraphQL integrated development environment (IDE). It’s a powerful (and all-around awesome) tool you’ll use often while building websites. It offers syntax highlighting, intellisense autocompletion, automatic documentation, and much more.',
+    toEditor: 'Go to editor',
+    developers: 'Developers',
+    sponsored: 'Sponsored by',
+    rssAbout:
+      'RS School is free-of-charge and community-based education program conducted by The Rolling Scopes developer community since 2013',
+    alexey: 'Alexey Pashchuk',
+    zamirbek: 'Zamirbek Utanov',
+    volha: 'Volha Martinchik',
   },
   graphiQLPage: {
     docs: 'Docs',
@@ -48,6 +59,12 @@ export default {
     back: '\u2190 Back',
     rootType: 'Root Types',
     schemaTypes: 'All Schema Types',
+    docsShow: 'Show Docs',
+    docsHide: 'Hide Docs',
+    runQuery: 'Execute query',
+    toolsShow: 'Show tools',
+    toolsHide: 'Hide tools',
+    prettify: 'Prettify',
   },
   errorPage: {
     title: 'Error',

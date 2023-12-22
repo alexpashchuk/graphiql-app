@@ -1,7 +1,8 @@
-import classes from '@/components/EditorMain/editorMain.module.css';
+import { FC } from 'react';
 import { useLocalization } from '@/hooks/useLocalization';
 import { GraphQLSchema } from 'graphql/type';
-import { FC } from 'react';
+
+import classes from './docs.module.css';
 
 type TypesMapProps = {
   schema?: GraphQLSchema;

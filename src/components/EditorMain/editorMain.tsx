@@ -14,6 +14,7 @@ import QueryEditor from '@/components/QueryEditor/queryEditor.tsx';
 import ToolsTab from '@/components/ToolsTab/toolsTab.tsx';
 import { Arrow } from '@/constants/constants';
 import QueryEndpoint from '@/components/EditorMain/QueryEndpoint/queryEndpoint.tsx';
+import Button from '@/components/Button/button.tsx';
 
 import classes from './editorMain.module.css';
 import { prettifyGraphQL } from '@/helpers/helpers';
@@ -78,12 +79,12 @@ const EditorMain = ({ schema }: EditorMainProps) => {
       <div className={classes.sessions}>
         <div className={classes.editor}>
           <div className={classes.iconContainer}>
-            <button onClick={handleRunQuery}>
-              <i className={classes.iconBtn}>&#10151;</i>
-            </button>
-            <button onClick={handlePrettifyQuery}>
-              <i className={classes.iconBtn}>&#129529;</i>
-            </button>
+            <Button onClick={handleRunQuery} className={classes.iconBtn} title={graphiQLPage.runQuery}>
+              <i>&#10151;</i>
+            </Button>
+            <Button className={classes.iconBtn} title={graphiQLPage.prettify} onClick={handlePrettifyQuery}>
+              <i>&#129529;</i>
+            </Button>
           </div>
           <div className={clsx(classes.queryEditorRoot, isOpenTools && classes.queryEditorRootOpen)}>
             <div className={classes.queryEditorWrapper}>
@@ -98,9 +99,13 @@ const EditorMain = ({ schema }: EditorMainProps) => {
           </div>
           <div className={clsx(classes.tools, isOpenTools && classes.toolsOpen)}>
             <ToolsTab isOpenTools={isOpenTools} />
-            <i className={classes.toolsBtn} onClick={() => setIsOpenTools((isOpenTools) => !isOpenTools)}>
-              {isOpenTools ? Arrow.ARROW_UP : Arrow.ARROW_DOWN}
-            </i>
+            <Button
+              title={isOpenTools ? graphiQLPage.toolsHide : graphiQLPage.toolsShow}
+              className={classes.toolsBtn}
+              onClick={() => setIsOpenTools((isOpenTools) => !isOpenTools)}
+            >
+              <i>{isOpenTools ? Arrow.ARROW_UP : Arrow.ARROW_DOWN}</i>
+            </Button>
           </div>
         </div>
         <div className={classes.response}>
