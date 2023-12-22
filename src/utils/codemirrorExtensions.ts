@@ -1,7 +1,7 @@
 import { GraphQLSchema } from 'graphql/type';
 import { graphql } from 'cm6-graphql';
 import { acceptCompletion, autocompletion } from '@codemirror/autocomplete';
-import { keymap, Prec } from '@uiw/react-codemirror';
+import { EditorView, keymap, Prec } from '@uiw/react-codemirror';
 import { jsonLanguage } from '@codemirror/lang-json';
 import { tags as t } from '@lezer/highlight';
 import createTheme from '@uiw/codemirror-themes';
@@ -9,6 +9,7 @@ import createTheme from '@uiw/codemirror-themes';
 export const extensions = (schema?: GraphQLSchema) => [
   schema ? graphql(schema) : jsonLanguage,
   autocompletion(),
+  EditorView.lineWrapping,
   Prec.high(
     keymap.of([
       {

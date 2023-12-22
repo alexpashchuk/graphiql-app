@@ -5,42 +5,20 @@
   height: calc(100vh - var(--height-header) - var(--height-footer) - 1.5rem);
   min-height: 500px;
 }
-.inputContainer {
-  width: 50%;
-  margin: 0 auto;
-}
+
 .container {
   display: flex;
   height: 100%;
   margin: 0;
-  overflow: auto;
   width: 100%;
 }
 
-.sidebar {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 8px;
-}
+@media (max-width: 1024px) {
+  .root {
+    height: 100%;
+  }
 
-.iconBtn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #fff;
-  font-size: 25px;
-  width: 44px;
-  height: 44px;
-  padding: 4px;
-  border: solid 2px #8080804f;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.4s ease-in-out;
-}
-.iconBtn:hover {
-  background-color: rgb(59 76 104 / 22%);
-}
-.activeDoc {
-  background-color: rgb(59 76 104 / 22%);
+  .container {
+    flex-direction: column;
+  }
 }
