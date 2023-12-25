@@ -91,6 +91,7 @@ export const buildTypeHierarchy = (parentType: GraphQLType, visitedTypes: Set<st
 export const prettifyGraphQL = (code: string): string => {
   code = code
     .trim()
+    .replace(/\b(\w+)\b\s+/g, '$1\n')
     .replace(/\s*:\s*/g, ': ')
     .replace(/\$\s*/g, '$')
     .replace(/\s*,\s*/g, ', ')
