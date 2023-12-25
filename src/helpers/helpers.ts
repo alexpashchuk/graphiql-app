@@ -89,23 +89,46 @@ export const buildTypeHierarchy = (parentType: GraphQLType, visitedTypes: Set<st
 };
 
 export const prettifyGraphQL = (code: string): string => {
+  code = code
+    .trim()
+    .replace(/\s*:\s*/g, ': ')
+    .replace(/\$\s*/g, '$')
+    .replace(/\s*,\s*/g, ', ')
+    .replace(/\s*{\s*/g, ' {\n')
+    .replace(/(\w*)\s*\n\s*(\))\s*{/g, (match, p1, p2) => {
+      return p2.trim() === ')' ? `${p1.trim()}${p2} {` : match;
+    })
+    .replace(/(\w+)\s*\(\s*([^)]+)\s*\)\s*{/g, '$1 ($2) {')
+    .replace(/\s*}\s*/g, '\n}\n')
+    .replace(/query\s*/g, 'query ');
+
   let indentLevel = 0;
-  const lines = code.split('\n');
+  let isInArgumentList = false;
   const formattedLines = [];
 
-  for (let line of lines) {
+  for (let line of code.split('\n')) {
     line = line.trim();
 
     if (line.endsWith('}')) {
       indentLevel--;
-    }
+      formattedLines.push(' '.repeat(Math.max(0, indentLevel) * 2) + line);
+    } else {
+      if (line) {
+        if (isInArgumentList) {
+          line = line.replace(/,$/, '');
+          isInArgumentList = false;
+        }
 
-    if (line) {
-      formattedLines.push('  '.repeat(indentLevel) + line);
-    }
+        formattedLines.push(' '.repeat(Math.max(0, indentLevel) * 2) + line);
 
-    if (line.endsWith('{')) {
-      indentLevel++;
+        if (line.endsWith('{')) {
+          indentLevel++;
+        } else if (line.endsWith('(')) {
+          isInArgumentList = true;
+        } else if (line.endsWith('}') && !line.endsWith('};')) {
+          formattedLines.push(' '.repeat(Math.max(0, indentLevel - 1) * 2) + '}');
+        }
+      }
     }
   }
 

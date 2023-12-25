@@ -68,6 +68,7 @@ const EditorMain = ({ schema }: EditorMainProps) => {
   const handlePrettifyQuery = async () => {
     try {
       const formattedCode = prettifyGraphQL(editorValue);
+
       setEditorValue(formattedCode);
     } catch (error) {
       console.error('Error formatting code:', error);
