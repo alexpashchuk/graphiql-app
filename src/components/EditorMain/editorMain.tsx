@@ -17,6 +17,7 @@ import QueryEndpoint from '@/components/EditorMain/QueryEndpoint/queryEndpoint.t
 import Button from '@/components/Button/button.tsx';
 
 import classes from './editorMain.module.css';
+import { prettifyGraphQL } from '@/helpers/helpers';
 
 type EditorMainProps = {
   schema?: GraphQLSchema;
@@ -25,6 +26,7 @@ type EditorMainProps = {
 const EditorMain = ({ schema }: EditorMainProps) => {
   const dispatch = useAppDispatch();
   const [isOpenTools, setIsOpenTools] = useState(false);
+  const [editorValue, setEditorValue] = useState('');
   const [queryResponse, setQueryResponse] = useState('');
   const { LocalizationData } = useLocalization();
   const { graphiQLPage } = LocalizationData;
@@ -59,7 +61,18 @@ const EditorMain = ({ schema }: EditorMainProps) => {
   };
 
   const onChangeQuery = (value: string) => {
+    setEditorValue(value);
     dispatch(setQuery(value));
+  };
+
+  const handlePrettifyQuery = async () => {
+    try {
+      const formattedCode = prettifyGraphQL(editorValue);
+
+      setEditorValue(formattedCode);
+    } catch (error) {
+      console.error('Error formatting code:', error);
+    }
   };
 
   return (
@@ -70,8 +83,7 @@ const EditorMain = ({ schema }: EditorMainProps) => {
             <Button onClick={handleRunQuery} className={classes.iconBtn} title={graphiQLPage.runQuery}>
               <i>&#10151;</i>
             </Button>
-            {/*TODO add Prettifying button https://app.asana.com/0/1206001149209373/1206205651066280*/}
-            <Button className={classes.iconBtn} title={graphiQLPage.prettify}>
+            <Button className={classes.iconBtn} title={graphiQLPage.prettify} onClick={handlePrettifyQuery}>
               <i>&#129529;</i>
             </Button>
           </div>
@@ -79,7 +91,7 @@ const EditorMain = ({ schema }: EditorMainProps) => {
             <div className={classes.queryEditorWrapper}>
               <QueryEndpoint />
               <QueryEditor
-                value=""
+                value={editorValue}
                 placeholder={graphiQLPage.queryEnter}
                 extension={extensions(schema)}
                 onChange={onChangeQuery}

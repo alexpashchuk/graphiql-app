@@ -1,3 +1,6 @@
+import { useState } from 'react';
+import clsx from 'clsx';
+
 import EditorMain from '@/components/EditorMain/editorMain.tsx';
 import Docs from '@/components/EditorMain/Docs/docs.tsx';
 import { useAppSelector } from '@/hooks/useRedux.ts';
