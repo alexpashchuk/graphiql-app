@@ -29,7 +29,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
   const { isScrolled } = useWindowScrolled(isMenuOpen);
-  console.log('locale', locale);
+
   const fetchUserName = useCallback(async () => {
     try {
       const q = query(collection(db, 'users'), where('uid', '==', user?.uid));

@@ -26,7 +26,7 @@ describe('Testing header components', () => {
         <Header />
       </BrowserRouter>
     );
-    screen.debug();
+
     expect(screen.queryByText('Sign in')).toBeDefined();
     expect(screen.queryByText('Sign up')).toBeDefined();
 
