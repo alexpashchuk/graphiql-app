@@ -1,10 +1,8 @@
 import { renderWithProviders } from '@/test/test-utils';
 import Docs from './docs';
-import { fireEvent, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { mockGraphQLSchema } from '@/mocks/MockSchema';
-import SelectedTypes from './selectedTypes';
-import TypesMap from './typesMap';
 
 describe('Testing docs component', () => {
   it('Renders documentation when "Show Docs" button is clicked', async () => {
