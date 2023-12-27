@@ -37,7 +37,7 @@ describe('Testing docs component', () => {
     expect(toggleButton).toBeDefined();
 
     userEvent.click(toggleButton);
-    screen.debug();
+
     await waitFor(() => {
       const text = screen.getByText('Docs not found');
       expect(text).toBeTruthy();

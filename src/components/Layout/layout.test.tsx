@@ -1,15 +1,12 @@
-import { fireEvent, screen, waitFor } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderWithProviders } from '@/test/test-utils';
-import { BrowserRouter, MemoryRouter, Route, Routes } from 'react-router-dom';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { vi } from 'vitest';
 import WelcomePage from '@/pages/WelcomePage/welcomePage';
 import Layout from '../Layout/layout';
-import EditorPage from '@/pages/EditorPage/editorPage';
 import locale from '../../localization/index';
-import GuestLayout from './guestLayout';
 import Docs from '../EditorMain/Docs/docs';
-import EditorMain from '../EditorMain/editorMain';
 import Header from '../Header/header';
 
 vi.mock('react-firebase-hooks/auth', () => ({
@@ -50,7 +47,6 @@ describe('Testing layout component', () => {
         <Docs />
       </MemoryRouter>
     );
-    screen.debug();
 
     fireEvent.click(await screen.findByText('📒'));
 

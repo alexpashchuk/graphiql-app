@@ -11,7 +11,7 @@ import NotFoundPage from '@/pages/NotFoundPage/notFoundPage.tsx';
 import ErrorPage from '@/pages/ErrorPage/errorPage.tsx';
 import { paths } from '@/constants/constants.ts';
 
-const routes = [
+export const routes = [
   {
     path: paths.welcome,
     element: <Layout />,
