@@ -11,7 +11,17 @@ import { useLocalization } from '@/hooks/useLocalization';
 import classes from './inputText.module.css';
 
 const InputText = <T extends FieldValues>(props: InputTextProps<T>) => {
-  const { field, labelText, type = 'text', autocomplete = 'on', error, register, password, isProgress } = props;
+  const {
+    field,
+    labelText,
+    type = 'text',
+    autocomplete = 'on',
+    error,
+    register,
+    password,
+    isProgress,
+    dataTestId,
+  } = props;
 
   const [showPassword, setShowPassword] = useState(false);
   const { LocalizationData } = useLocalization();
@@ -25,6 +35,7 @@ const InputText = <T extends FieldValues>(props: InputTextProps<T>) => {
         </label>
         <div className={classes.inputWrapper}>
           <input
+            data-testid={dataTestId || ''}
             {...(Boolean(field) && register?.(field!))}
             className={clsx(classes.input, error ? classes.errorInput : null)}
             id={field}

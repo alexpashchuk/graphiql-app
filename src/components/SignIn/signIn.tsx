@@ -62,6 +62,7 @@ const SignIn = () => {
       <h1 className={classes.title}>{authForm.signInTitle}</h1>
       <form noValidate onSubmit={onSubmit}>
         <InputText
+          dataTestId="email"
           field="email"
           labelText={authForm.emailLabel}
           type="email"
@@ -69,6 +70,7 @@ const SignIn = () => {
           error={errors.email?.message}
         />
         <InputText
+          dataTestId="password"
           field="password"
           labelText={authForm.passwordLabel}
           type="password"

@@ -10,6 +10,7 @@ export type InputTextProps<T extends FieldValues> = {
   error?: string | undefined;
   register?: UseFormRegister<T>;
   password?: string;
+  dataTestId?: string;
   isProgress?: boolean;
 };
 

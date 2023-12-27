@@ -62,8 +62,15 @@ const SignUp = () => {
       {isLoading && <Spinner />}
       <h1 className={classes.title}>{authForm.signUpTitle}</h1>
       <form noValidate onSubmit={onSubmit}>
-        <InputText field="name" labelText={authForm.nameLabel} register={register} error={errors.name?.message} />
         <InputText
+          dataTestId="name"
+          field="name"
+          labelText={authForm.nameLabel}
+          register={register}
+          error={errors.name?.message}
+        />
+        <InputText
+          dataTestId="email"
           field="email"
           labelText={authForm.emailLabel}
           type="email"
@@ -71,6 +78,7 @@ const SignUp = () => {
           error={errors.email?.message}
         />
         <InputText
+          dataTestId="password"
           field="password"
           labelText={authForm.passwordLabel}
           type="password"
@@ -80,6 +88,7 @@ const SignUp = () => {
           isProgress
         />
         <InputText
+          dataTestId="confirmPassword"
           field="confirmPassword"
           labelText={authForm.confirmPasswordLabel}
           type="password"
