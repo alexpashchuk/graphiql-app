@@ -6,34 +6,19 @@ import { jsonLanguage } from '@codemirror/lang-json';
 import { tags as t } from '@lezer/highlight';
 import createTheme from '@uiw/codemirror-themes';
 
-// export const extensions = (schema?: GraphQLSchema) => [
-//   schema ? graphql(schema) : jsonLanguage,
-//   autocompletion(),
-//   EditorView.lineWrapping,
-//   Prec.high(
-//     keymap.of([
-//       {
-//         key: 'Tab',
-//         run: acceptCompletion,
-//       },
-//     ])
-//   ),
-// ];
-export const extensions = (schema?: GraphQLSchema) =>
-  [
-    schema ? graphql(schema) : null,
-    jsonLanguage,
-    autocompletion(),
-    EditorView.lineWrapping,
-    Prec.high(
-      keymap.of([
-        {
-          key: 'Tab',
-          run: acceptCompletion,
-        },
-      ])
-    ),
-  ].filter((extension) => extension !== null);
+export const extensions = (schema?: GraphQLSchema) => [
+  schema ? graphql(schema) : jsonLanguage,
+  autocompletion(),
+  EditorView.lineWrapping,
+  Prec.high(
+    keymap.of([
+      {
+        key: 'Tab',
+        run: acceptCompletion,
+      },
+    ])
+  ),
+];
 
 export const customTheme = createTheme({
   theme: 'light',
