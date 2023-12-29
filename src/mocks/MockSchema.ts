@@ -1,4 +1,5 @@
 import { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLList, GraphQLID } from 'graphql';
+import { vi } from 'vitest';
 
 const characterType = new GraphQLObjectType({
   name: 'Character',
@@ -70,3 +71,25 @@ export const stringTypeDescription =
   'The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.';
 export const intTypeDescription =
   'The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.';
+
+export const mockGraphqlExtension = vi.fn();
+export const mockJsonLanguageExtension = vi.fn();
+export const mockAutocompletionExtension = vi.fn();
+export const mockEditorViewLineWrappingExtension = vi.fn();
+export const mockPrecHigh = vi.fn();
+export const mockKeymapOf = vi.fn();
+export const mockAcceptCompletion = vi.fn();
+
+export const mockExtensions = (schema?: GraphQLSchema) => [
+  schema ? mockGraphqlExtension(schema) : mockJsonLanguageExtension(),
+  mockAutocompletionExtension(),
+  mockEditorViewLineWrappingExtension,
+  mockPrecHigh(
+    mockKeymapOf([
+      {
+        key: 'Tab',
+        run: mockAcceptCompletion,
+      },
+    ])
+  ),
+];
