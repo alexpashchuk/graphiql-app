@@ -8,6 +8,8 @@ import Layout from '../Layout/layout';
 import locale from '../../localization/index';
 import Docs from '../EditorMain/Docs/docs';
 import Header from '../Header/header';
+import EditorPage from '@/pages/EditorPage/editorPage';
+import GuestLayout from './guestLayout';
 
 vi.mock('react-firebase-hooks/auth', () => ({
   useAuthState: () => [null, false, null],
