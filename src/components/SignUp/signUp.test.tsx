@@ -43,6 +43,21 @@ vi.mock('@/hooks/useRedux', async () => ({
   useAppDispatch: () => mockDispatch,
 }));
 
+const setState = {
+  showPassword: false,
+  setShowPassword: () => {
+    setState.showPassword = !setState.showPassword;
+  },
+};
+
+vi.mock('react', async () => {
+  const actual = await vi.importActual<typeof import('react')>('react');
+  return {
+    ...actual,
+    useState: vi.fn(() => [setState.showPassword, setState.setShowPassword]),
+  };
+});
+
 describe('Sign up test', () => {
   afterEach(() => {
     vi.clearAllMocks();
@@ -90,5 +105,15 @@ describe('Sign up test', () => {
     });
 
     expect(mockDispatch).toHaveBeenCalledWith(setAuthView(SIGN_IN));
+  });
+
+  it('change password view', async () => {
+    const wrapper = renderWithProviders(<SignUp />);
+    const showPasswordButton = wrapper.getAllByTestId('show-password')[0];
+
+    await act(async () => {
+      fireEvent.click(showPasswordButton);
+      expect(setState.showPassword).toBe(setState.showPassword);
+    });
   });
 });

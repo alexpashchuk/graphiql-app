@@ -44,6 +44,7 @@ const InputText = <T extends FieldValues>(props: InputTextProps<T>) => {
           />
           {type === 'password' && (
             <div
+              data-testid="show-password"
               role="button"
               aria-label={showPassword ? authForm.showPassword : authForm.hidePassword}
               className={classes.showHide}

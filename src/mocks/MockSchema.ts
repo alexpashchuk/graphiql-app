@@ -53,7 +53,6 @@ const mockSelectedType = {
     },
   ],
 };
-
 const mockSchemaQuery = {
   getQueryType: () => queryType,
   getTypeMap: () => {
