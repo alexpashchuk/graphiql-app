@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event';
 import { renderWithProviders } from '@/test/test-utils';
 import EditorMain from './editorMain';
 import { prettifyGraphQL } from '@/helpers/helpers';
+import { parseStringToJSON } from '@/utils/parseStringToJSON';
 
 describe('EditorMain component', () => {
   it('renders EditorMain correctly', async () => {
@@ -58,5 +59,22 @@ describe('EditorMain component', () => {
       expect(spyAnchorTag).toHaveBeenCalledTimes(1);
       expect(screen.getByTitle('Hide tools')).toBeDefined();
     });
+  });
+  it('should parse a valid JSON string and return an object', () => {
+    const jsonString = '{"key": "value"}';
+    const result = parseStringToJSON(jsonString);
+    expect(result).toEqual({ key: 'value' });
+  });
+
+  it('should parse a valid JSON string with leading/trailing whitespaces and return an object', () => {
+    const jsonString = '   {"key": "value"}   ';
+    const result = parseStringToJSON(jsonString);
+    expect(result).toEqual({ key: 'value' });
+  });
+
+  it('should parse a valid JSON string with newline characters and return an object', () => {
+    const jsonString = '{"key": "value"}\n';
+    const result = parseStringToJSON(jsonString);
+    expect(result).toEqual({ key: 'value' });
   });
 });
