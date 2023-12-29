@@ -31,6 +31,7 @@ const queryType = new GraphQLObjectType({
 const mockGraphQLSchema = new GraphQLSchema({
   query: queryType,
 });
+
 const mockSelectedType = {
   name: 'Character',
   description: 'An individual character in the Rick and Morty universe',
@@ -51,4 +52,21 @@ const mockSelectedType = {
     },
   ],
 };
-export { mockGraphQLSchema, mockSelectedType };
+
+const mockSchemaQuery = {
+  getQueryType: () => queryType,
+  getTypeMap: () => {
+    return {
+      Character: characterType,
+      CharacterList: characterListType,
+      Query: queryType,
+    };
+  },
+};
+
+export { mockGraphQLSchema, mockSelectedType, mockSchemaQuery };
+
+export const stringTypeDescription =
+  'The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.';
+export const intTypeDescription =
+  'The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.';

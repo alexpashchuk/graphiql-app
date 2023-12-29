@@ -8,12 +8,14 @@ import { useAppDispatch, useAppSelector } from '@/hooks/useRedux.ts';
 import { selectGraphql, setHeaders, setVariables } from '@/store/slices/graphqlSlice.tsx';
 
 import classes from './toolsTab.module.css';
+import { boolean } from 'yup';
 
 type ToolsTabProps = {
   isOpenTools: boolean;
+  isEditor?: boolean;
 };
 
-const ToolsTab = ({ isOpenTools }: ToolsTabProps) => {
+const ToolsTab = ({ isOpenTools, isEditor }: ToolsTabProps) => {
   const dispatch = useAppDispatch();
   const { headers, variables } = useAppSelector(selectGraphql);
   const [activeTab, setActiveTab] = useState(TabEnum.VARIABLES);
@@ -47,10 +49,10 @@ const ToolsTab = ({ isOpenTools }: ToolsTabProps) => {
       </div>
       {isOpenTools && (
         <div className={classes.editorTools}>
-          {activeTab === TabEnum.VARIABLES && (
+          {activeTab === TabEnum.VARIABLES && isEditor && (
             <QueryEditor value={variables} onChange={handleVariablesChange} extension={extensions()} />
           )}
-          {activeTab === TabEnum.HEADERS && (
+          {activeTab === TabEnum.HEADERS && isEditor && (
             <QueryEditor value={headers} onChange={handleHeadersChange} extension={extensions()} />
           )}
         </div>

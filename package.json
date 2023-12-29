@@ -68,5 +68,12 @@
     "vite-plugin-svgr": "^4.2.0",
     "vite-tsconfig-paths": "^4.2.1",
     "vitest": "^1.0.1"
+  },
+  "overrides": {
+    "@codemirror/lang-json": "^6.0.1",
+    "@uiw/codemirror-themes": "^4.21.21",
+    "@uiw/react-codemirror": "^4.21.21",
+    "cm6-graphql": "^0.0.12",
+    "codemirror": "^6.0.1"
   }
 }

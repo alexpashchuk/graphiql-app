@@ -5,8 +5,10 @@ import { selectGraphql } from '@/store/slices/graphqlSlice.tsx';
 import { useSchemaQuery } from '@/services/api.ts';
 
 import classes from './editorPage.module.css';
-
-const EditorPage = () => {
+type EditorPageProps = {
+  isEditorExist?: boolean;
+};
+const EditorPage = ({ isEditorExist = true }: EditorPageProps) => {
   const { endpoint } = useAppSelector(selectGraphql);
   const { data: schema } = useSchemaQuery(endpoint);
 
@@ -14,7 +16,7 @@ const EditorPage = () => {
     <section className={classes.root}>
       <div className={classes.container}>
         <Docs schema={schema} />
-        <EditorMain schema={schema} />
+        <EditorMain schema={schema} isEditor={isEditorExist} />
       </div>
     </section>
   );

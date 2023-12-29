@@ -1,25 +1,20 @@
-import { fireEvent, screen, waitFor } from '@testing-library/react';
+import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Header from './header';
 import { renderWithProviders } from '@/test/test-utils';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, MemoryRouter, Route, Routes } from 'react-router-dom';
+import Layout from '../Layout/layout';
+import AuthLayout from '../Layout/authLayout';
+import AuthPage from '@/pages/AuthPage/authPage';
 import { vi } from 'vitest';
 
-// vi.mock('react-firebase-hooks/auth', () => ({
-//   useAuthState: () => [null, false, null],
-// }));
-// vi.mock('@/utils/useWindowScrolled.ts', () => ({
-//   useWindowScrolled: vi.fn(() => ({ isScrolled: false })),
-// }));
+let authenticatedUser: { uid: string; email: string } | null = null;
+
+vi.mock('react-firebase-hooks/auth', () => ({
+  useAuthState: () => [authenticatedUser, false, null],
+}));
+
 describe('Testing header components', () => {
-  beforeAll(() => {
-    vi.mock('react-firebase-hooks/auth', () => ({
-      useAuthState: () => [null, false, null],
-    }));
-    vi.mock('@/utils/useWindowScrolled.ts', () => ({
-      useWindowScrolled: vi.fn(() => ({ isScrolled: false })),
-    }));
-  });
   it('Localization of the header component, handles language switch correctly', async () => {
     renderWithProviders(
       <BrowserRouter>
@@ -70,23 +65,91 @@ describe('Testing header components', () => {
     expect(screen.queryByTitle(/Menu close/i)).toBeNull();
   });
 
-  it('Renders correctly when the user is authenticated', async () => {
-    vi.mock('react-firebase-hooks/auth', () => ({
-      useAuthState: () => [{ uid: '123', email: 'test@example.com', name: 'Test' }, false, null],
-    }));
-
+  it('renders Sign In button and navigates to Sign In page when clicked', async () => {
     renderWithProviders(
-      <BrowserRouter>
-        <Header />
-      </BrowserRouter>
+      <MemoryRouter initialEntries={['/']}>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route
+              path="auth"
+              element={
+                <AuthLayout>
+                  <AuthPage />
+                </AuthLayout>
+              }
+            />
+          </Route>
+        </Routes>
+      </MemoryRouter>
     );
 
-    expect(screen.queryByText('Test')).toBeDefined();
-    expect(screen.queryByText('Logout')).toBeDefined();
+    expect(window.location.pathname).toBe('/');
 
-    expect(screen.queryByText('Sign in')).toBeNull();
-    expect(screen.queryByText('Sign up')).toBeNull();
+    const singInBtn = screen.getByText(/Sign in/i);
+    expect(singInBtn).toBeDefined();
 
-    await userEvent.click(screen.getByText('Logout'));
+    fireEvent.click(singInBtn);
+
+    await waitFor(() => {
+      expect(screen.getByLabelText('Email')).toBeDefined();
+      expect(screen.getByLabelText('Password')).toBeDefined();
+    });
+  });
+
+  it('renders Sign Up button and navigates to Sign Up page when clicked', async () => {
+    renderWithProviders(
+      <MemoryRouter initialEntries={['/']}>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route
+              path="auth"
+              element={
+                <AuthLayout>
+                  <AuthPage />
+                </AuthLayout>
+              }
+            />
+          </Route>
+        </Routes>
+      </MemoryRouter>
+    );
+    screen.debug();
+    expect(window.location.pathname).toBe('/');
+    const singUpBtn = screen.getByText(/Sign up/i);
+    expect(singUpBtn).toBeDefined();
+
+    fireEvent.click(singUpBtn);
+
+    await waitFor(() => {
+      expect(screen.getByLabelText('Name')).toBeDefined();
+      expect(screen.getByLabelText('Email')).toBeDefined();
+      expect(screen.getByLabelText('Password')).toBeDefined();
+      expect(screen.getByLabelText('Email')).toBeDefined();
+      expect(screen.getByLabelText('Confirm Password')).toBeDefined();
+    });
+  });
+  it('renders the authenticated user information and logout button', async () => {
+    authenticatedUser = {
+      uid: '123',
+      email: 'test@example.com',
+    };
+
+    renderWithProviders(
+      <MemoryRouter>
+        <Header />
+      </MemoryRouter>
+    );
+
+    const logoutBtn = screen.getByText(/Logout/);
+    expect(logoutBtn).toBeInTheDocument();
+
+    await waitFor(() => {
+      const handler = userEvent.setup();
+      userEvent.click(logoutBtn);
+      const spyAnchorTag = vi.spyOn(handler, 'click');
+      handler.click(logoutBtn);
+
+      expect(spyAnchorTag).toHaveBeenCalledTimes(1);
+    });
   });
 });
