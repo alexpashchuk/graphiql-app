@@ -12,7 +12,7 @@ import { boolean } from 'yup';
 
 type ToolsTabProps = {
   isOpenTools: boolean;
-  isEditor: boolean;
+  isEditor?: boolean;
 };
 
 const ToolsTab = ({ isOpenTools, isEditor }: ToolsTabProps) => {
