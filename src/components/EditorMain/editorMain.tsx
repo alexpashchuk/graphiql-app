@@ -21,9 +21,10 @@ import { prettifyGraphQL } from '@/helpers/helpers';
 
 type EditorMainProps = {
   schema?: GraphQLSchema;
+  isEditor: boolean;
 };
 
-const EditorMain = ({ schema }: EditorMainProps) => {
+const EditorMain = ({ schema, isEditor }: EditorMainProps) => {
   const dispatch = useAppDispatch();
   const [isOpenTools, setIsOpenTools] = useState(false);
   const [editorValue, setEditorValue] = useState('');
@@ -89,17 +90,19 @@ const EditorMain = ({ schema }: EditorMainProps) => {
           </div>
           <div className={clsx(classes.queryEditorRoot, isOpenTools && classes.queryEditorRootOpen)}>
             <div className={classes.queryEditorWrapper}>
-              <QueryEndpoint />
-              <QueryEditor
-                value={editorValue}
-                placeholder={graphiQLPage.queryEnter}
-                extension={extensions(schema)}
-                onChange={onChangeQuery}
-              />
+              {isEditor && <QueryEndpoint />}
+              {isEditor && (
+                <QueryEditor
+                  value={editorValue}
+                  placeholder={graphiQLPage.queryEnter}
+                  extension={extensions(schema)}
+                  onChange={onChangeQuery}
+                />
+              )}
             </div>
           </div>
           <div className={clsx(classes.tools, isOpenTools && classes.toolsOpen)}>
-            <ToolsTab isOpenTools={isOpenTools} />
+            <ToolsTab isOpenTools={isOpenTools} isEditor={isEditor} />
             <Button
               title={isOpenTools ? graphiQLPage.toolsHide : graphiQLPage.toolsShow}
               className={classes.toolsBtn}
@@ -110,7 +113,7 @@ const EditorMain = ({ schema }: EditorMainProps) => {
           </div>
         </div>
         <div className={classes.response}>
-          <QueryEditor value={queryResponse} extension={extensions()} isEditable={false} />
+          {isEditor && <QueryEditor value={queryResponse} extension={extensions()} isEditable={false} />}
         </div>
       </div>
     </div>

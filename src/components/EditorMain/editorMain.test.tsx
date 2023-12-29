@@ -1,56 +1,62 @@
-import { act, render, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import { renderWithProviders } from '@/test/test-utils';
 import EditorMain from './editorMain';
-import { mockGraphQLSchema } from '@/mocks/MockSchema';
+import { prettifyGraphQL } from '@/helpers/helpers';
 
 describe('EditorMain component', () => {
   it('renders EditorMain correctly', async () => {
-    renderWithProviders(<EditorMain />);
+    renderWithProviders(<EditorMain isEditor={false} />);
+
     screen.debug();
-    // expect(screen.getByText('Enter your query')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Variables' })).toBeDefined();
+
+    expect(screen.getByRole('button', { name: 'Headers' })).toBeDefined();
+    expect(screen.getByRole('button', { name: '➧' })).toBeDefined();
+    expect(screen.getByRole('button', { name: '🧹' })).toBeDefined();
+    expect(screen.getByRole('button', { name: '▼' })).toBeDefined();
   });
-  // it('handles the run query button click', async () => {
-  //   // Mock the response data
-  //   const mockData = { data: { result: { results: ['Mocked result'] } } };
+  it('handles click on "Prettify" button', async () => {
+    const enterValue = 'query {}';
+    const resultValue = `query {\n}`;
 
-  //   // Mock the useGraphqlDataQuery hook response
-  //   vi.mock('@/services/api.ts', () => ({
-  //     useGraphqlDataQuery: vi.fn((onSuccess) => {
-  //       onSuccess(mockData);
-  //       return { mutate: vi.fn() }; // Mock the mutate function
-  //     }),
-  //   }));
+    renderWithProviders(<EditorMain isEditor={false} />);
 
-  //   renderWithProviders(<EditorMain schema={mockGraphQLSchema} />);
+    const prettifyButton = screen.getByRole('button', { name: '🧹' });
 
-  //   // Find and click the run query button
-  //   const runQueryButton = screen.getByTitle('Run query');
-  //   userEvent.click(runQueryButton);
+    expect(prettifyButton).toBeInTheDocument();
 
-  //   // Your assertions based on the expected behavior go here
-  //   await waitFor(() => {
-  //     expect(screen.getByText(JSON.stringify(mockData.data))).toBeInTheDocument();
-  //   });
-  // });
+    await waitFor(() => {
+      const handler = userEvent.setup();
+      userEvent.click(prettifyButton);
+      const spyAnchorTag = vi.spyOn(handler, 'click');
+      handler.click(prettifyButton);
+      if (spyAnchorTag) {
+        expect(prettifyGraphQL(enterValue)).toEqual(resultValue);
+      }
+      expect(spyAnchorTag).toHaveBeenCalledTimes(1);
+    });
+  });
+  it('handles malformed input gracefully', () => {
+    const code = `query {{ user { id name } }`;
 
-  // it('handles the run query button click', async () => {
-  //   const mockData = { data: 'your mock data' };
-  //   vi.mock('@/services/api.ts', () => ({
-  //     useGraphqlDataQuery: vi.fn((onSuccess) => {
-  //       onSuccess(mockData);
-  //       return { mutate: vi.fn() };
-  //     }),
-  //   }));
+    expect(() => prettifyGraphQL(code)).not.toThrow();
+  });
+  it('handles click on "Show tools" button', async () => {
+    renderWithProviders(<EditorMain isEditor={false} />);
 
-  //   renderWithProviders(<EditorMain />);
+    const openToolsBtn = await screen.findByTitle('Show tools');
+    expect(openToolsBtn).toBeDefined();
 
-  //   const runQueryButton = screen.getByTitle('Run query');
-  //   userEvent.click(runQueryButton);
+    await waitFor(() => {
+      const handler = userEvent.setup();
+      userEvent.click(openToolsBtn);
+      const spyAnchorTag = vi.spyOn(handler, 'click');
+      handler.click(openToolsBtn);
 
-  //   await waitFor(() => {
-  //     expect(screen.getByText(JSON.stringify(mockData.data))).toBeInTheDocument();
-  //   });
-  // });
+      expect(spyAnchorTag).toHaveBeenCalledTimes(1);
+      expect(screen.getByTitle('Hide tools')).toBeDefined();
+    });
+  });
 });

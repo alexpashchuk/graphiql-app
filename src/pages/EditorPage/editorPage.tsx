@@ -14,7 +14,7 @@ const EditorPage = () => {
     <section className={classes.root}>
       <div className={classes.container}>
         <Docs schema={schema} />
-        <EditorMain schema={schema} />
+        <EditorMain schema={schema} isEditor={true} />
       </div>
     </section>
   );

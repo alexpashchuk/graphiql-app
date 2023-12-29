@@ -2,7 +2,9 @@ import { renderWithProviders } from '@/test/test-utils';
 import Docs from './docs';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { mockGraphQLSchema } from '@/mocks/MockSchema';
+import { intTypeDescription, mockGraphQLSchema, stringTypeDescription } from '@/mocks/MockSchema';
+import { GraphQLEnumType, GraphQLInt, GraphQLObjectType, GraphQLString } from 'graphql/type';
+import { buildTypeHierarchy } from '@/helpers/helpers';
 
 describe('Testing docs component', () => {
   it('Renders documentation when "Show Docs" button is clicked', async () => {
@@ -68,6 +70,69 @@ describe('Testing docs component', () => {
     await waitFor(() => {
       const queryType = screen.getByText('Query');
       expect(queryType).toBeDefined();
+    });
+  });
+  it('builds hierarchy for GraphQLObjectType', () => {
+    const objectType = new GraphQLObjectType({
+      name: 'MockObject',
+      fields: {
+        field1: { type: GraphQLString, description: 'Field 1' },
+        field2: { type: GraphQLInt, description: 'Field 2' },
+      },
+      description: 'Mock Object Type',
+    });
+
+    const result = buildTypeHierarchy(objectType, new Set());
+
+    expect(result).toEqual({
+      name: 'MockObject',
+      description: 'Mock Object Type',
+      fields: [
+        {
+          name: 'field1',
+          description: 'Field 1',
+          type: {
+            name: 'String',
+            description: stringTypeDescription,
+          },
+        },
+        {
+          name: 'field2',
+          description: 'Field 2',
+          type: {
+            name: 'Int',
+            description: intTypeDescription,
+          },
+        },
+      ],
+      subtypes: [
+        {
+          name: 'String',
+          description: stringTypeDescription,
+        },
+        {
+          name: 'Int',
+          description: intTypeDescription,
+        },
+      ],
+    });
+  });
+
+  it('builds hierarchy for GraphQLEnumType', () => {
+    const enumType = new GraphQLEnumType({
+      name: 'MockEnum',
+      values: {
+        VALUE1: { description: 'Value 1' },
+        VALUE2: { description: 'Value 2' },
+      },
+      description: 'Mock Enum Type',
+    });
+
+    const result = buildTypeHierarchy(enumType, new Set());
+
+    expect(result).toEqual({
+      name: 'MockEnum',
+      description: 'Enum values:  VALUE1 VALUE2',
     });
   });
 });
