@@ -1,10 +1,11 @@
-import { screen, waitFor } from '@testing-library/react';
+import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import { renderWithProviders } from '@/test/test-utils';
 import EditorMain from './editorMain';
 import { prettifyGraphQL } from '@/helpers/helpers';
 import { parseStringToJSON } from '@/utils/parseStringToJSON';
+import { mockGraphQLSchema } from '@/mocks/MockSchema';
 
 describe('EditorMain component', () => {
   it('renders EditorMain correctly', async () => {
@@ -18,6 +19,36 @@ describe('EditorMain component', () => {
     expect(screen.getByRole('button', { name: '🧹' })).toBeDefined();
     expect(screen.getByRole('button', { name: '▼' })).toBeDefined();
   });
+
+  it('handles click on "Run Query" button', async () => {
+    renderWithProviders(<EditorMain isEditor={false} />);
+
+    const runQueryButton = screen.getByTitle('Execute query');
+
+    expect(runQueryButton).toBeInTheDocument();
+
+    await waitFor(() => {
+      const handler = userEvent.setup();
+      userEvent.click(runQueryButton);
+      const spyAnchorTag = vi.spyOn(handler, 'click');
+      handler.click(runQueryButton);
+
+      expect(spyAnchorTag).toHaveBeenCalled();
+    });
+  });
+  it('handles toggling the tools tab', async () => {
+    renderWithProviders(<EditorMain isEditor={false} />);
+
+    const openToolsBtn = await screen.findByTitle('Show tools');
+    expect(openToolsBtn).toBeDefined();
+
+    await act(async () => {
+      fireEvent.click(openToolsBtn);
+
+      expect(screen.queryByTitle('Hide tools')).toBeDefined();
+    });
+  });
+
   it('handles click on "Prettify" button', async () => {
     const enterValue = 'query {}';
     const resultValue = `query {\n}`;

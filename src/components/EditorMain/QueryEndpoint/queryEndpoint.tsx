@@ -24,7 +24,7 @@ const QueryEndpoint = () => {
   };
 
   return (
-    <form className={classes.queryForm} onSubmit={handleSubmit}>
+    <form className={classes.queryForm} onSubmit={handleSubmit} data-testid="query-form">
       <input
         className={classes.queryUrl}
         type="text"
