@@ -44,6 +44,10 @@ describe('Testing docs component', () => {
       const text = screen.getByText('Docs not found');
       expect(text).toBeTruthy();
     });
+    const backButton = screen.queryByText('\u2190 Back');
+    expect(backButton).toBeNull();
+    const characterType = screen.queryByText('Character');
+    expect(characterType).toBeNull();
   });
   it('Handles switching between SelectedTypes and TypesMap', async () => {
     renderWithProviders(<Docs schema={mockGraphQLSchema} />);
@@ -72,6 +76,7 @@ describe('Testing docs component', () => {
       expect(queryType).toBeDefined();
     });
   });
+
   it('builds hierarchy for GraphQLObjectType', () => {
     const objectType = new GraphQLObjectType({
       name: 'MockObject',

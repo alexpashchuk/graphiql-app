@@ -86,8 +86,7 @@ const Header = () => {
       <div className={clsx('container', classes.wrapper)}>
         <nav className={classes.nav}>
           <NavLink className={classes.link} to={paths.welcome}>
-            <>logo</>
-            {/* <GraphQLLogo className={classes.logo} /> */}
+            <GraphQLLogo className={classes.logo} />
           </NavLink>
           <Button
             className={classes.menuTrigger}

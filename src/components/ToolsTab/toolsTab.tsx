@@ -8,7 +8,6 @@ import { useAppDispatch, useAppSelector } from '@/hooks/useRedux.ts';
 import { selectGraphql, setHeaders, setVariables } from '@/store/slices/graphqlSlice.tsx';
 
 import classes from './toolsTab.module.css';
-import { boolean } from 'yup';
 
 type ToolsTabProps = {
   isOpenTools: boolean;

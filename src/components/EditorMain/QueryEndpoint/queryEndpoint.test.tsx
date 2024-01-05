@@ -20,4 +20,23 @@ describe('Query Endpoint', () => {
     fireEvent.submit(input);
     expect(mockDispatch).toHaveBeenCalledWith(setEndpoint(BASE_URL));
   });
+  it('changes input value when typing', () => {
+    const wrapper = renderWithProviders(<QueryEndpoint />);
+    const input = wrapper.getByPlaceholderText('Enter an API endpoint') as HTMLInputElement;
+
+    fireEvent.change(input, { target: { value: 'https://api.mock.com/graphql' } });
+
+    expect(input.value).toBe('https://api.mock.com/graphql');
+  });
+  it('submits the form and dispatches setEndpoint action', () => {
+    const wrapper = renderWithProviders(<QueryEndpoint />);
+    const input = wrapper.getByPlaceholderText('Enter an API endpoint') as HTMLInputElement;
+    const form = wrapper.getByTestId('query-form');
+
+    fireEvent.change(input, { target: { value: 'https://api.mock.com/graphql' } });
+
+    fireEvent.submit(form);
+
+    expect(mockDispatch).toHaveBeenCalledWith(setEndpoint('https://api.mock.com/graphql'));
+  });
 });

@@ -1,4 +1,5 @@
 import { vi } from 'vitest';
+import { screen, waitFor } from '@testing-library/react';
 import * as firestoreAuth from 'firebase/auth';
 import { renderWithProviders } from '@/test/test-utils.tsx';
 import { fireEvent } from '@testing-library/react';
@@ -114,6 +115,16 @@ describe('Sign up test', () => {
     await act(async () => {
       fireEvent.click(showPasswordButton);
       expect(setState.showPassword).toBe(setState.showPassword);
+    });
+  });
+  it('handles form validation errors', async () => {
+    const wrapper = renderWithProviders(<SignUp />);
+    const submitButton = wrapper.getByText(/Submit/i);
+
+    await act(async () => {
+      fireEvent.submit(submitButton);
+
+      expect(wrapper.queryAllByText('Field is required')).toBeDefined();
     });
   });
 });

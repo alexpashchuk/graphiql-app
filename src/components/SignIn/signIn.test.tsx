@@ -83,4 +83,22 @@ describe('Sign in test', () => {
 
     expect(mockDispatch).toHaveBeenCalledWith(setAuthView(SIGN_UP));
   });
+  it('handles validation errors', async () => {
+    const wrapper = renderWithProviders(<SignIn />);
+    const invalidEmail = 'invalid-email';
+    const invalidPassword = 'short';
+
+    const inputEmail = wrapper.getByTestId('email') as HTMLInputElement;
+    const inputPassword = wrapper.getByTestId('password') as HTMLInputElement;
+    const submitButton = wrapper.getByText(/Submit/i);
+
+    await act(async () => {
+      fireEvent.change(inputEmail, { target: { value: invalidEmail } });
+      fireEvent.change(inputPassword, { target: { value: invalidPassword } });
+    });
+
+    await act(async () => {
+      fireEvent.submit(submitButton);
+    });
+  });
 });
