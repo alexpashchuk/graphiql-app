@@ -5,7 +5,6 @@ import userEvent from '@testing-library/user-event';
 import { intTypeDescription, mockGraphQLSchema, stringTypeDescription } from '@/mocks/MockSchema';
 import { GraphQLEnumType, GraphQLInt, GraphQLObjectType, GraphQLString } from 'graphql/type';
 import { buildTypeHierarchy } from '@/helpers/helpers';
-import { vi } from 'vitest';
 
 describe('Testing docs component', () => {
   it('Renders documentation when "Show Docs" button is clicked', async () => {
