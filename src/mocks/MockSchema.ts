@@ -73,27 +73,6 @@ export const stringTypeDescription =
 export const intTypeDescription =
   'The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.';
 
-export const mockGraphqlExtension = vi.fn();
-export const mockJsonLanguageExtension = vi.fn();
-export const mockAutocompletionExtension = vi.fn();
-export const mockEditorViewLineWrappingExtension = vi.fn();
-export const mockPrecHigh = vi.fn();
-export const mockKeymapOf = vi.fn();
-export const mockAcceptCompletion = vi.fn();
-
-// export const mockExtensions = (schema?: GraphQLSchema) => [
-//   schema ? mockGraphqlExtension(schema) : mockJsonLanguageExtension(),
-//   mockAutocompletionExtension(),
-//   mockEditorViewLineWrappingExtension,
-//   mockPrecHigh(
-//     mockKeymapOf([
-//       {
-//         key: 'Tab',
-//         run: mockAcceptCompletion,
-//       },
-//     ])
-//   ),
-// ];
 export const queryEditorExtension = vi.fn((schema?: GraphQLSchema): Extension[] => {
   const extensions: Extension[] = [];
 
