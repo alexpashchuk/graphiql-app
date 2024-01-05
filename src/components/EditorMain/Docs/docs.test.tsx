@@ -5,6 +5,7 @@ import userEvent from '@testing-library/user-event';
 import { intTypeDescription, mockGraphQLSchema, stringTypeDescription } from '@/mocks/MockSchema';
 import { GraphQLEnumType, GraphQLInt, GraphQLObjectType, GraphQLString } from 'graphql/type';
 import { buildTypeHierarchy } from '@/helpers/helpers';
+import { vi } from 'vitest';
 
 describe('Testing docs component', () => {
   it('Renders documentation when "Show Docs" button is clicked', async () => {
@@ -44,6 +45,10 @@ describe('Testing docs component', () => {
       const text = screen.getByText('Docs not found');
       expect(text).toBeTruthy();
     });
+    const backButton = screen.queryByText('\u2190 Back');
+    expect(backButton).toBeNull();
+    const characterType = screen.queryByText('Character');
+    expect(characterType).toBeNull();
   });
   it('Handles switching between SelectedTypes and TypesMap', async () => {
     renderWithProviders(<Docs schema={mockGraphQLSchema} />);
@@ -72,6 +77,7 @@ describe('Testing docs component', () => {
       expect(queryType).toBeDefined();
     });
   });
+
   it('builds hierarchy for GraphQLObjectType', () => {
     const objectType = new GraphQLObjectType({
       name: 'MockObject',

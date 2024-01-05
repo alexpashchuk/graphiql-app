@@ -1,3 +1,5 @@
+import { Extension } from '@uiw/react-codemirror';
+import { graphql } from 'cm6-graphql';
 import { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLList, GraphQLID } from 'graphql';
 import { vi } from 'vitest';
 
@@ -79,16 +81,25 @@ export const mockPrecHigh = vi.fn();
 export const mockKeymapOf = vi.fn();
 export const mockAcceptCompletion = vi.fn();
 
-export const mockExtensions = (schema?: GraphQLSchema) => [
-  schema ? mockGraphqlExtension(schema) : mockJsonLanguageExtension(),
-  mockAutocompletionExtension(),
-  mockEditorViewLineWrappingExtension,
-  mockPrecHigh(
-    mockKeymapOf([
-      {
-        key: 'Tab',
-        run: mockAcceptCompletion,
-      },
-    ])
-  ),
-];
+// export const mockExtensions = (schema?: GraphQLSchema) => [
+//   schema ? mockGraphqlExtension(schema) : mockJsonLanguageExtension(),
+//   mockAutocompletionExtension(),
+//   mockEditorViewLineWrappingExtension,
+//   mockPrecHigh(
+//     mockKeymapOf([
+//       {
+//         key: 'Tab',
+//         run: mockAcceptCompletion,
+//       },
+//     ])
+//   ),
+// ];
+export const queryEditorExtension = vi.fn((schema?: GraphQLSchema): Extension[] => {
+  const extensions: Extension[] = [];
+
+  if (schema) {
+    extensions.push(graphql(schema));
+  }
+
+  return extensions;
+});
