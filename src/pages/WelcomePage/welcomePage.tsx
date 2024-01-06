@@ -49,9 +49,6 @@ const WelcomePage = () => {
           <a href="https://github.com/alexpashchuk" target="_blank" rel="noreferrer" className={classes.link}>
             <p>{welcomePage.alexey}</p>
           </a>
-          <a href="https://github.com/zutanov" target="_blank" rel="noreferrer" className={classes.link}>
-            <p>{welcomePage.zamirbek}</p>
-          </a>
           <a href="https://github.com/olgamartinchik" target="_blank" rel="noreferrer" className={classes.link}>
             <p>{welcomePage.volha}</p>
           </a>

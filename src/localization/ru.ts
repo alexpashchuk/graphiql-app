@@ -53,7 +53,6 @@ export default {
     rssAbout:
       'RS School — это бесплатная образовательная программа, проводимая сообществом разработчиков The Rolling Scopes с 2013 года.',
     alexey: 'Алексей Пащук',
-    zamirbek: 'Замирбек Утанов',
     volha: 'Ольга Матринчик',
   },
   graphiQLPage: {

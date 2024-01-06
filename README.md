@@ -9,7 +9,6 @@ GraphiQL is a playground/IDE for graphQL requests
 ## Developers:
 
 - [Alexey Pashchuk](https://github.com/alexpashchuk)
-- [Zamirbek Utanov](https://github.com/zutanov)
 - [Volha Martinchik](https://github.com/olgamartinchik)
 
 ## Install instructions:

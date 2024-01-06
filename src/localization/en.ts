@@ -44,7 +44,6 @@ export default {
     rssAbout:
       'RS School is free-of-charge and community-based education program conducted by The Rolling Scopes developer community since 2013',
     alexey: 'Alexey Pashchuk',
-    zamirbek: 'Zamirbek Utanov',
     volha: 'Volha Martinchik',
   },
   graphiQLPage: {
