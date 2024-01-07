@@ -24,9 +24,9 @@ export default {
       name: 'The first letter must be uppercase',
       email: 'Invalid entry. Please enter valid email address, for example, john@smith.com.',
 
-      passwordUpper: 'Password must contain at least one upper case letter [A-Z]',
-      passwordLower: 'Password must contain at least one lower case letter [a-z]',
-      passwordNumeric: 'Password must contain at least one numeric character [0-9]',
+      passwordUpper: 'Password must contain at least one upper case letter',
+      passwordLower: 'Password must contain at least one lower case letter',
+      passwordNumeric: 'Password must contain at least one numeric character',
       passwordCharacter: 'Password must contain at least one special character: ~`!@#$%^&*()-_+={}[]|\\;:"<>,./?',
       passwordLength: 'Password must be at least 8 characters',
 
