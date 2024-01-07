@@ -1,0 +1,24 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: calc(100vh - var(--height-header) - var(--height-footer) - 1.5rem);
+  min-height: 500px;
+}
+
+.container {
+  display: flex;
+  height: 100%;
+  margin: 0;
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .root {
+    height: 100%;
+  }
+
+  .container {
+    flex-direction: column;
+  }
+}

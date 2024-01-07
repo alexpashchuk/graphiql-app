@@ -1,0 +1,77 @@
+export default {
+  navMenu: {
+    welcome: 'Welcome Page',
+    signIn: 'Sign in',
+    signUp: 'Sign up',
+    logout: 'Logout',
+    openMenu: 'Menu open',
+    closeMenu: 'Menu close',
+  },
+  authForm: {
+    signInTitle: 'Sign In',
+    signUpTitle: 'Sign Up',
+    emailLabel: 'Email',
+    passwordLabel: 'Password',
+    nameLabel: 'Name',
+    confirmPasswordLabel: 'Confirm Password',
+    passwordStrength: 'Password Strength',
+    btnText: 'Submit',
+    showPassword: 'Show password',
+    hidePassword: 'Hide password',
+    noNaveAccount: "Don't have an account?",
+    haveAccount: 'Already have an account?',
+    errors: {
+      name: 'The first letter must be uppercase',
+      email: 'Invalid entry. Please enter valid email address, for example, john@smith.com.',
+
+      passwordUpper: 'Password must contain at least one upper case letter',
+      passwordLower: 'Password must contain at least one lower case letter',
+      passwordNumeric: 'Password must contain at least one numeric character',
+      passwordCharacter: 'Password must contain at least one special character: ~`!@#$%^&*()-_+={}[]|\\;:"<>,./?',
+      passwordLength: 'Password must be at least 8 characters',
+
+      confirmPassword: 'Your passwords do not match',
+      required: 'Field is required',
+    },
+  },
+
+  welcomePage: {
+    welcomeTitle:
+      'GraphiQL is the GraphQL integrated development environment (IDE). It’s a powerful (and all-around awesome) tool you’ll use often while building websites. It offers syntax highlighting, intellisense autocompletion, automatic documentation, and much more.',
+    toEditor: 'Go to editor',
+    developers: 'Developers',
+    sponsored: 'Sponsored by',
+    rssAbout:
+      'RS School is free-of-charge and community-based education program conducted by The Rolling Scopes developer community since 2013',
+    alexey: 'Alexey Pashchuk',
+    volha: 'Volha Martinchik',
+  },
+  graphiQLPage: {
+    docs: 'Docs',
+    docsInstruction: 'A GraphQL schema provides a root type for each kind of operation.',
+    docsNotFound: 'Docs not found',
+    editor: 'Editor',
+    response: 'Response',
+    queryEnter: 'Enter your query',
+    endpointEnter: 'Enter an API endpoint',
+    endpointSubmit: 'Submit an API endpoint',
+    back: '\u2190 Back',
+    rootType: 'Root Types',
+    schemaTypes: 'All Schema Types',
+    docsShow: 'Show Docs',
+    docsHide: 'Hide Docs',
+    runQuery: 'Execute query',
+    toolsShow: 'Show tools',
+    toolsHide: 'Hide tools',
+    prettify: 'Prettify',
+  },
+  errorPage: {
+    title: 'Error',
+    text: 'Something went wrong',
+    btnText: 'Back Home',
+  },
+  notFoundPage: {
+    text: 'Page Not Found',
+    btnText: 'Back Home',
+  },
+};

@@ -1,0 +1,32 @@
+.footer {
+  background-color: var(--color-accent);
+}
+
+.footerWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s;
+}
+
+.link:hover {
+  color: var(--color-hover);
+}
+
+.link:active {
+  scale: 0.95;
+}
+
+.logoRss {
+  width: 100px;
+}
+
+.logoGitHub {
+  width: 40px;
+}
