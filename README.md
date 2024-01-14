@@ -32,3 +32,10 @@ GraphiQL is a playground/IDE for graphQL requests
 - GraphQL
 - Firebase
 - React Hook Form, Yup
+
+## Screenshots
+
+![img.png](src/assets/screenshots/app1.png)
+![img.png](src/assets/screenshots/app2.png)
+![img.png](src/assets/screenshots/app3.png)
+![img.png](src/assets/screenshots/app4.png)
